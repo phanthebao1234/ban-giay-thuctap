@@ -1,0 +1,13 @@
+.header {
+    margin-top: 10px;
+    &_menu {
+        ul li a {
+            text-decoration: none;
+            color: #424453;
+            
+        }
+        &-img {
+            margin-left: 25px;
+        }
+    }
+}
