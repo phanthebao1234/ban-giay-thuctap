@@ -25,7 +25,7 @@
                 }
                 $bill -> updateOrderTotal($bill_id, $total);
                 echo '<meta http-equiv="refresh" content="0;url=./index.php?action=order"/>';
-
+                    
             }
             break;
         default:

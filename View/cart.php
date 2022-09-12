@@ -57,9 +57,9 @@
     </h3>
     <?php 
         if(isset($_SESSION['customer_id'])) {
-            echo '<a href="index.php?action=order&act=order_detail">Thanh toán</a>';
+            echo '<a class="btn btn-danger" href="index.php?action=order&act=order_detail">Tiến hành thanh toán</a>';
         } else {
-            echo '<a href="index.php?action=auth&act=login">Vui lòng đăng nhập trước khi thanh toán</a>';
+            echo '<a class="btn btn-warning" href="index.php?action=auth&act=login">Vui lòng đăng nhập trước khi thanh toán</a>';
         }
     ?>
 </div>

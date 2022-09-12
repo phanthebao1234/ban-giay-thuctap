@@ -75,6 +75,7 @@
                 </tbody>
             </table>
         </form>
+        <a class="btn btn-danger" href="index.php?action=sanpham">Thanh toán thành công</a>
     <?php
         endif;
     ?> 
