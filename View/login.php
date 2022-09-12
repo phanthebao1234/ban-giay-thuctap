@@ -13,5 +13,5 @@
         <button type="submit" class="btn btn-primary" name="submit">Login</button>
     </form>
     <a href="index.php?action=auth&act=reset">Quên mật khẩu</a>
-    <a href="index.php?action=auth&act=regrister">Tạo tài khoản</a>
+    <a href="index.php?action=auth&act=resgister">Tạo tài khoản</a>
 </div>

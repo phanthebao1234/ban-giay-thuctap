@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg text-danger " style="height: 90px; margin-bottom: 40px">
+<nav class="navbar navbar-expand-lg " style="height: 90px; margin-bottom: 40px">
   <div class="container-fluid">
     <a class="navbar-brand text-danger" href="#">GiàyShopVN</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -12,19 +12,30 @@
         <li class="nav-item">
           <a class="nav-link" href="index.php?action=home&act=sanpham">Sản Phẩm</a>
         </li>
-       
+
       </ul>
       <div class="d-flex">
         <?php
-          if(isset($_SESSION['customer_id'])) {
-            echo $_SESSION['customer_firstname'];
-            echo '<a href="index.php?action=auth&act=logout_action">Logout</a>';
-          } else {
-            echo '<a class="btn btn-success " href="index.php?action=auth">Login</a>';
-          }
+        if (isset($_SESSION['customer_id'])) {
+          ?>
+          <div class="btn-group">
+          <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            <?php echo '<a style="text-decoration: none; color: #fff" href="index.php?action=auth&act=viewprofile">' . $_SESSION['customer_firstname'] . ' ' . $_SESSION['customer_lastname'] . '</a>'; ?>
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item text-danger" href="index.php?action=">View Profile</a></li>
+            <li><a class="dropdown-item text-danger" href="index.php?action=cart">View Cart</a></li>
+            <!-- <li><a class="dropdown-item" href="#">Something else here</a></li> -->
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item text-danger" href="index.php?action=auth&act=logout_action">Log out</a></li>
+          </ul>
+        </div>
+          <?php
+        } else {
+          echo '<a class="btn btn-success " href="index.php?action=auth">Login</a>';
+        }
         ?>
-        
       </div>
     </div>
   </div>
-</nav>
+</nav>  

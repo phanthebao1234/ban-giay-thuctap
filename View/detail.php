@@ -15,7 +15,9 @@
 
 <div class="container" style="margin-top: 100px">
     <h1>Danh sách sản phẩm</h1>
-    <div class="detail d-flex my-5">
+    <form class="detail d-flex my-5" action="index.php?action=cart&act=add_cart" method="POST">
+        <input type="hidden" name="product_id" value="<?php echo $id_sanpham ?>">
+        
         <div class="detail_image">
             <img src="../Content/images/<?php echo $hinhsanpham ?>" style="width:100%" alt="">
         </div>
@@ -33,14 +35,16 @@
                 echo $tonkho;
             ?></h4>
 
-
             <h3 class="text-danger fw-bold my-3" style="text-decoration: underline">
                 Giá: <?php echo $giasanpham ?> đ
             </h3>
+
+            <label for="quantity">Số lượng: </label>
+            <input type="number" name="product_quantity" id="product_quantity" value="1"> 
             
-            <button class="btn btn-danger btn-lg mt-2" type="submit">Thêm vào giỏ hàng</button>
+            <button class="btn btn-danger btn-lg mt-2" type="submit" name="submit">Thêm vào giỏ hàng</button>
         </div>
-    </div>
+    </form>
     <div class="description w-50">
         <p><span style="font-weight: bold; font-size 16px;">Mô tả: </span><?php
             echo $mota

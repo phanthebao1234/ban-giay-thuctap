@@ -20,15 +20,18 @@
                 if($result == true) {
                     $_SESSION['customer_id'] = $result['customer_id'];
                     $_SESSION['customer_firstname'] = $result['customer_firstname'];
+                    $_SESSION['customer_lastname'] = $result['customer_lastname'];
                     echo $_SESSION['customer_firstname'];
+                    echo '<script>alert("Dang xuat thanh cong")</script>';
+                    echo '<meta http-equiv="refresh" content="0;url=./index.php?action=home"/>';
                 } else {
                     echo '<script>alert("Sai thong tin")</script>';
                 }
             }
-        case 'regrister':
-            include 'View/regrister.php';
+        case 'resgister':
+            include 'View/resgister.php';
             break;
-        case 'regrister_action':
+        case 'resgister_action':
             if($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $customer_firstname = $_POST['customer_firstname'];
                 $customer_lastname = $_POST['customer_lastname'];
@@ -41,8 +44,9 @@
                 $customer_image = $_POST['customer_image'];
                 $customer = new Customer();
                 $isStatus = $customer->regristerCustomer($customer_firstname, $customer_lastname, $customer_render, $customer_birthday, $customer_phone, $customer_email, $customer_password, $customer_address, $customer_image);
-                if($isStatus == true) {
+                if($isStatus) {
                     echo '<script>alert("Tao tai khoan thanh cong")</script>';
+                    echo '<meta http-equiv="refresh" content="0;url=./index.php?action=home"/>';
                 }
             }
             break;
@@ -50,7 +54,10 @@
             include 'View/update.php';
             break;
         case 'logout_action':
-            session_destroy();
+            $_SESSION['customer_id'] = null;
+            $_SESSION['firstname'] = null;
+            $_SESSION['lastname'] = null;
+            // session_destroy();
             echo '<script>alert("Dang xuat thanh cong")</script>';
             echo '<meta http-equiv="refresh" content="0;url=./index.php?action=home"/>';
             break;

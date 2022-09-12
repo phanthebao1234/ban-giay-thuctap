@@ -28,7 +28,7 @@
             user_render='$user_render',
             user_birthday='$user_birthday',
             user_phonenumber='$user_phonenumber',
-            user_email='$user_phonenumber',
+            user_email='$user_email',
             user_password='$user_password',
             user_address='$user_address',
             user_status='$user_status',

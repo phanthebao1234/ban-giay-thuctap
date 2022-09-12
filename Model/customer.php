@@ -34,9 +34,18 @@
 
         public function regristerCustomer($customer_firstname, $customer_lastname, $customer_render, $customer_birthday, $customer_phonenumber, $customer_email, $customer_password, $customer_address, $customer_image) {
             $db = new connect();
-            $query = "insert into customer (customer_firstname, customer_lastname, customer_render, customer_birthday, customer_phonenumber, customer_email, customer_password, customer_address, customer_image)
+            $query = "insert into customers (customer_firstname, customer_lastname, customer_render, customer_birthday, customer_phonenumber, customer_email, customer_password, customer_address, customer_image)
             values ('$customer_firstname', '$customer_lastname', '$customer_render', '$customer_birthday', '$customer_phonenumber', '$customer_email', '$customer_password', '$customer_address', '$customer_image')";
-            $db->exec($query);
+            try {
+                $db->exec($query);
+            } catch (PDOException  $e) {
+                if($e->errorInfo[1] == 1062) {
+                    echo '<script>alert("Email hoặc số điện thoại bị trùng lặp")</script>';
+                    echo '<meta http-equiv="refresh" content="0;url=./index.php?action=auth&act=resgister"/>';
+                } else {
+                    echo "<script>alert('Sai cú pháp')</script>";
+                }
+            }
         }
     }
 ?>
