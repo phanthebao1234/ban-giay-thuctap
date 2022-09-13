@@ -1,4 +1,4 @@
-<div class="container table-responsive">
+<div class="container-fluid table-responsive">
     <h1>Danh sách sản phẩm</h1>
     <div class="d-flex">
         <a class="btn btn-success me-3" href="index.php?action=product&act=insert_product">Thêm Mới</a>

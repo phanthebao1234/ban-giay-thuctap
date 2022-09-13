@@ -44,7 +44,7 @@ if (isset($_GET['act'])) {
     }
     ?>
     <form>
-        <div class="row">
+            <div class="row">
             <input type="hidden" class="form-control" name="user_id" value="<?php if (isset($user_id)) echo $user_id ?>">
             <div class="col-md-3">
                 <label for="phone" class="form-label">First Name</label>

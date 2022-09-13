@@ -22,12 +22,13 @@
                     $_SESSION['customer_firstname'] = $result['customer_firstname'];
                     $_SESSION['customer_lastname'] = $result['customer_lastname'];
                     echo $_SESSION['customer_firstname'];
-                    echo '<script>alert("Dang xuat thanh cong")</script>';
+                    echo '<script>alert("Đăng nhập thành công")</script>';
                     echo '<meta http-equiv="refresh" content="0;url=./index.php?action=home"/>';
                 } else {
                     echo '<script>alert("Sai thong tin")</script>';
                 }
             }
+            break;
         case 'resgister':
             include 'View/resgister.php';
             break;

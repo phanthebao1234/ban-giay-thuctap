@@ -10,6 +10,9 @@
             include 'View/order.php';
             break;
         case 'order_detail':
+            include 'View/order_detail.php';
+            break;
+        case 'order_detail_action':
             if(isset($_SESSION['customer_id'])){
                 $customer_id = $_SESSION['customer_id'];
                 $bill = new HoaDon();
