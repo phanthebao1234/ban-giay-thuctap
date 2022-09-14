@@ -30,6 +30,16 @@
             customer_image='$customer_image',
             where customer_id=$customer_id
             ";
+            $db->exec($query);
+        }
+
+        public function updateCustomerAdressPhone($customer_id, $customer_address, $customer_phone) {
+            $db = new connect();
+            $query = "update customers
+            set customer_address = '$customer_address',
+                customer_phonenumber = $customer_phone
+            where customer_id = $customer_id";
+            $db-> exec($query);
         }
 
         public function regristerCustomer($customer_firstname, $customer_lastname, $customer_render, $customer_birthday, $customer_phonenumber, $customer_email, $customer_password, $customer_address, $customer_image) {

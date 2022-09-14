@@ -40,8 +40,8 @@
                 $image = $_POST['image'];
                 $customer = new Customers();
                 $customer->insertCustomers($firstname, $lastname, $render, $birthday, $phone, $email, $password, $address, $image);
-                echo '<meta http-equiv="refresh" content="0;url=./index.php?action=customer"/>';
                 echo '<script>alert("Thêm khách hàng thành công!")</script>';
+                echo '<meta http-equiv="refresh" content="0;url=./index.php?action=customer"/>';
             }
             break;
         case 'update_action':
@@ -57,9 +57,11 @@
                 $address = $_POST['address'];
                 $image = $_POST['image'];
                 $customer = new Customers();
-                $customer->updateCustomer($id, $firstname, $lastname, $render, $birthday, $phone, $email, $password, $address, $image);
-                echo '<meta http-equiv="refresh" content="0;url=./index.php?action=customer"/>';
+                $isStatus = $customer->updateCustomer($id, $firstname, $lastname, $render, $birthday, $phone, $email, $password, $address, $image);
+                echo $isStatus;
+                header("Location: ./index.php?action=customer");
                 echo '<script>alert("Cập nhật khách hàng thành công!")</script>';
+                echo '<meta http-equiv="refresh" content="0;url=./index.php?action=customer"/>';
             }
 
             break;

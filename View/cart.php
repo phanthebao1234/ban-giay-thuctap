@@ -4,12 +4,13 @@
         echo '<p class="text-danger">Bạn chưa có sản phẩm nào trong giỏ hàng</p>';
     }
     ?>
-    <table class="table table-striped table-bordered table-hover">
+    <table class="table" style="table-layout: fixed;">
         <thead>
             <tr>
+                <th></th>
                 <th>ID</th>
-                <th>Tên sản phẩm</th>
                 <th>Hinh sản phẩm</th>
+                <th>Tên sản phẩm</th>
                 <th>Giá sản phẩm</th>
                 <th>Số lượng sản phẩm</th>
                 <th>Sửa</th>
@@ -23,15 +24,18 @@
                 $i++;
             ?>
                 <tr>
-                    <form action="index.php?action=cart&act=update&id=<?php echo $item['product_id'] ?>" method="POST">
+                    <form action="index.php?action=cart&act=update&id=<?php echo $item['product_id'] ?>" method="POST" class="cart-form">
+                        <td>
+                            <input type="checkbox" name="cart_check" id="cart_check" onclick="handle( <?php echo $item['product_id']?>,'<?php echo $item['product_name'] ?>', <?php echo $item['product_quantity'] ?>, )">
+                        </td>
                         <td>
                             <?php echo $i ?>
                         </td>
                         <td>
-                            <?php echo $item['product_name'] ?>
+                            <img src="Content/images/<?php echo $item['product_image'] ?>" alt="" style="width: 100%; height: auto" rowspan="2">
                         </td>
                         <td>
-                            <img src="Content/images/<?php echo $item['product_image'] ?>" alt="" style="width: 40%" rowspan="2">
+                            <?php echo $item['product_name'] ?>
                         </td>
                         <td>
                             <?php echo  number_format($item['product_price']) ?>
@@ -75,21 +79,36 @@
 </div>
 
 <script>
-    $('#voucher-form').submit(function(e) {
-        e.preventDefault();
-        var form = $(this);
-        var actionUrl = form.attr('action');
-        console.log(actionUrl);
-        $.ajax({
-            method: "get",
-            url: actionUrl,
-            data: form.serialize(),
-            
-            // serializes the form's elements.
-            // success: function(data) {
-            //     alert(data); // show response from the php script.
-            // }
-        });
-    })
+    var arrayProduct = [];
+    const checkBox = document.querySelectorAll('input[name="cart_check"]');
+
+    handle = (product_id, product_name, product_quantity) => {
+        const item = {product_id: product_id, product_name: product_name, product_quantity: product_quantity};
+        for (let i = 0; i < checkBox.length; i++) {
+            const element = checkBox[i];
+            if(element.checked == true) {
+            // arrayProduct.push(item)
+                if(arrayProduct.length > 0) {
+                    arrayProduct.map(product => {
+                        console.log(product.product_id);
+                        if (product.product_id === item.product_id) {
+                            console.log("san pham bi trung");
+                            return arrayProduct;
+                        } else {
+                            console.log("lol");
+                            arrayProduct.push(item)
+                            return arrayProduct;
+                        }
+                    })
+                } else {
+                    arrayProduct.push(item)
+                }
+                console.log('Item: ',item);
+                console.log('array,' ,arrayProduct);
+            } else {
+                // arrayProduct = [];
+            }
+        }
+    }
    
 </script>

@@ -32,15 +32,16 @@
         case 'update':
             if(isset($_POST['newqty'])) {   
                 $soluongmua = $_POST['newqty'];
-                
-                foreach($soluongmua as $key=>$qty)
-                {
-                    if($_SESSION['cart'][$key]['product_quantity']!=$qty)
-                    {
-                        updateItem($key,$qty);//21,10
-                    }
-                }
-                echo '<meta http-equiv="refresh" content="0;url=./index.php?action=cart"/>';
+                $check = $_POST['cart_check'];
+                echo '<script>alert("'.$check.'")</script>';
+                // foreach($soluongmua as $key=>$qty)
+                // {
+                //     if($_SESSION['cart'][$key]['product_quantity']!=$qty)
+                //     {
+                //         updateItem($key,$qty);//21,10
+                //     }
+                // }
+                // echo '<meta http-equiv="refresh" content="0;url=./index.php?action=cart"/>';
             }
             break;
         default:

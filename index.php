@@ -27,7 +27,7 @@
 
     <!-- link code css -->
     <link rel="stylesheet" href="Content/css/style.css">
-    <link rel="stylesheet" href="Content/css/home.css">
+    <!-- <link rel="stylesheet" href="Content/css/home.css"> -->
 
      <!-- link jquery -->
     <script src="./node_modules/jquery/dist/jquery.min.js"></script>
