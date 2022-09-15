@@ -23,7 +23,7 @@
         $_SESSION['cart'][$product_id] = $item;   
     }
 
-    function getTotal($sale = 0) {
+    function getTotal($sale = 0, $pttt = 0) {
         $subtotal=0;
         // duyệt qua giỏ hàng mà khách hàng mua tức là duyệt qua mảng $_SESSION['cart]
         foreach($_SESSION['cart'] as $item)
@@ -31,9 +31,9 @@
             $subtotal+=$item['total'];
         }
         // định dạng tiền tệ
-        $subtotal= $subtotal - $sale*$subtotal;
-        $total = number_format($subtotal);
-        return $total;
+        $subtotal= $subtotal - $sale*$subtotal - $pttt*$subtotal;
+        // $total = number_format($subtotal);
+        return $subtotal;
     }
 
     function updateItem($product_id,$quantity) {

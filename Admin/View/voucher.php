@@ -42,7 +42,7 @@
                         <a class="btn btn-warning" href="index.php?action=voucher&act=update&id=<?php echo $set['voucher_id']?>">Sửa</a>
                     </td>
                     <td>
-                        <a class="btn btn-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa Voucher: <?php echo $voucher_name ?>')" href="index.php?action=voucher&act=delete&id=<?php echo $set['voucher_id']?>">Xóa</a>
+                        <a class="btn btn-danger"  href="index.php?action=voucher&act=delete&id=<?php echo $set['voucher_id']?>">Xóa</a>
                     </td>
                 </tr>
             <?php

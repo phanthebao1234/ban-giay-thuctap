@@ -1,8 +1,12 @@
 <div class="container-fluid table-responsive">
     <h1>Danh sách sản phẩm</h1>
-    <div class="d-flex">
-        <a class="btn btn-success me-3" href="index.php?action=product&act=insert_product">Thêm Mới</a>
-        <a class="btn btn-primary " href="index.php?action=product&act=export_action">Export Excel</a>
+    <div class="d-flex justify-content-between flex-row mt-3">
+        <div>
+            <a href="index.php?action=product&act=insert_product" class="btn btn-primary me-3">&plus; Thêm mới</a>
+            <a href="index.php?action=voucher&act=import" class="btn btn-info me-3">&uArr; Nhập CSV</a>
+            <a href="index.php?action=product&act=export_action" class="btn btn-success">&dArr; Xuất file Excel</a>
+        </div>
+        <a class="text-decoration-underline fst-italic" href="index.php?action=sanpham&act=restore">Các sản phẩm đã xóa <i class="fas fa-lg fa-trash-alt"></i></a>
     </div>
     <div class="d-flex">
         <div class="edit_product my-3 me-3 w-25">

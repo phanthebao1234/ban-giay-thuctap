@@ -14,5 +14,12 @@
             $result = $db->getInstance($query);
             return $result;
         }
+        function updateProductAfterPay($product_id, $product_quantity) {
+            $db = new connect();
+            $query = "update sanpham
+            set TonKho = TonKho - $product_quantity
+            where id_sanpham = $product_id";
+            $db -> exec($query);
+        }
     }
 ?>

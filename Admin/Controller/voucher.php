@@ -18,8 +18,8 @@
                 $voucher_count = $_POST['voucher_count'];
                 $voucher_status = $_POST['voucher_status'];
                 $voucher = new Voucher();
-                $isStatus = $voucher -> insertVoucher($voucher_code, $voucher_name, $voucher_start, $voucher_end, $voucher_sale, $voucher_count, $voucher_status);
-                if($isStatus == true) {
+                $voucher -> insertVoucher($voucher_code, $voucher_name, $voucher_start, $voucher_end, $voucher_sale, $voucher_count, $voucher_status);
+                if(isset($voucher) == true) {
                     echo "<script>alert('Thêm thành công')</script>";
                     echo '<meta http-equiv="refresh" content="0;url=./index.php?action=voucher"/>';
                 } else {
@@ -42,8 +42,8 @@
                 $voucher_count = $_POST['voucher_count'];
                 $voucher_status = $_POST['voucher_status'];
                 $voucher = new Voucher();
-                $isStatus = $voucher -> updateVoucher($voucher_id, $voucher_code, $voucher_name, $voucher_start, $voucher_end, $voucher_sale, $voucher_count, $voucher_status);
-                if($isStatus) {
+                $voucher -> updateVoucher($voucher_id, $voucher_code, $voucher_name, $voucher_start, $voucher_end, $voucher_sale, $voucher_count, $voucher_status);
+                if(isset($voucher)) {
                     echo "<script>alert('Cập nhật thành công')</script>";
                     echo '<meta http-equiv="refresh" content="0;url=./index.php?action=voucher"/>';
                 }
@@ -53,9 +53,9 @@
             if(isset($_GET['id'])) {
                 $voucher_id = $_GET['id'];
                 $voucher = new Voucher();
-                $isStatus = $voucher->deleteVoucher($voucher_id);
-                if($isStatus == true) {
-                    echo "<script>alert('Xóa thành công thành công')</script>";
+                $voucher->deleteVoucher($voucher_id);
+                if(isset($voucher) == true) {
+                    echo "<script>alert('Voucher đã được chuyển vào thùng rác thành công')</script>";
                     echo '<meta http-equiv="refresh" content="0;url=./index.php?action=voucher"/>';
                 }
             }
@@ -67,10 +67,23 @@
             if(isset($_GET['id'])) {
                 $voucher_id = $_GET['id'];
                 $voucher = new Voucher();
-                $isStatus = $voucher->restoreVoucher($voucher_id);
-                if($isStatus == true) {
-                    echo "<script>alert('Xóa thành công thành công')</script>";
+                $voucher->restoreVoucher($voucher_id);
+                if(isset($voucher)) {
+                    echo "<script>alert('Khôi phục thành công')</script>";
                     echo '<meta http-equiv="refresh" content="0;url=./index.php?action=voucher&act=restore"/>';
+                }
+            }
+            break;
+        case 'delete_permanently':
+            if (isset($_GET['id'])) {
+                $voucher = new Voucher();
+                $voucher_id = $_GET['id'];
+                $voucher -> deleteVoucherPermanently($voucher_id);
+                if(isset($voucher_id)) {
+                    echo '<script>alert("Xóa thành công")</script>';
+                    echo '<meta http-equiv="refresh" content="0;url=./index.php?action=voucher&act=restore"/>';
+                } else {
+                    echo '<script>alert("Xóa không thành công")</script>';
                 }
             }
             break;

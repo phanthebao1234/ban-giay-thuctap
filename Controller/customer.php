@@ -11,8 +11,8 @@
                 $customer_address = $_POST['customer_address'];
                 $customer_phone = $_POST['customer_phone'];
                 $customer = new Customer();
-                $isStatus = $customer -> updateCustomerAdressPhone($customer_id, $customer_address, $customer_phone);
-                if($isStatus == true) {
+                $customer -> updateCustomerAdressPhone($customer_id, $customer_address, $customer_phone);
+                if(isset($customer)) {
                     echo "<script>alert('Cập nhật thành công')</script>";
                     echo '<meta http-equiv="refresh" content="0;url=./index.php?action=order2"/>';
                 } else {

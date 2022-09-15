@@ -61,21 +61,21 @@
                         <td><?php echo $set['total'] ?></td>
                     </tr>
                     <tr>
+                    <?php
+                        endwhile;
+                    ?>
             <td colspan="3">
               <b>Tổng Tiền</b>
             </td>
             <td style="float: right;" rowspan="2">
-              <b><?php echo getTotal();?> <sup><u>đ</u></sup></b>
+              <b><?php echo $_SESSION['total'];?> <sup><u>đ</u></sup></b>
             </td>
             
           </tr>
-                    <?php
-                        endwhile;
-                    ?>
                 </tbody>
             </table>
         </form>
-        <a class="btn btn-danger" href="index.php?action=sanpham">Thanh toán thành công</a>
+        <a class="btn btn-danger" href="index.php?action=order2&act=pay_action">Thanh toán thành công</a>
     <?php
         endif;
     ?> 

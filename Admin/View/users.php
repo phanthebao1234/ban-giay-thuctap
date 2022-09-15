@@ -1,8 +1,11 @@
 <div class="container">
     <h1>Danh sách khách hàng</h1>
-    <div class="d-flex">
-        <a class="btn btn-success" href="index.php?action=user&act=user_insert">Thêm Mới</a>
-        <a class="btn btn-primary mx-3" href="index.php?action=user&act=user_export">Export Excel</a>
+    <div class="d-flex justify-content-between flex-row mt-3">
+        <div>
+            <a class="btn btn-success" href="index.php?action=user&act=user_insert">Thêm Mới</a>
+            <a class="btn btn-primary mx-3" href="index.php?action=user&act=user_export">Export Excel</a>
+        </div>
+        <a class="text-decoration-underline fst-italic" href="index.php?action=voucher&act=restore">Các Voucher đã xóa <i class="fas fa-lg fa-trash-alt"></i></a>
         <!-- <a class="btn btn-info" href="index.php?action=user$act=user_export">Import CSV</a> -->
     </div>
     <div class="my-3 d-flex">
@@ -108,9 +111,20 @@
                         </a>
                     </td>
                     <td>
-                        <a class="btn btn-danger" href="index.php?action=user&act=delete_action&id_user=<?php echo $set['id_khachhang'] ?>" onclick="return confirm('Bạn có muốn xóa <?php echo $set['Ho'] . ' ' . $set['Ten'] ?> ?')">
+                        <?php 
+                            if(isset($_SESSION['roll']) && $_SESSION['roll'] == 'admin'):
+                        ?>
+                            <a class="btn btn-danger" href="index.php?action=user&act=delete_action&id_user=<?php echo $set['id_khachhang'] ?>" onclick="return confirm('Bạn có muốn xóa <?php echo $set['Ho'] . ' ' . $set['Ten'] ?> ?')">
                             Xóa
-                        </a>
+                        </a>        
+                        <?php 
+                            else:
+                        ?>
+                        <a class="btn btn-secondary" href="#" onclick="alert('Bạn không có quyền xóa')">
+                            Xóa
+                        <?php
+                            endif;
+                        ?>
                     </td>
                 </tr>
             <?php

@@ -1,5 +1,5 @@
 <div class="container">
-    <form action="index.php?action=auth&act=login_action" method="post" enctype="multipart/form-data">
+    <form action="index.php?action=auth&act=login_action" method="POST" >
         <div class="mb-3">
             <label for="email" class="form-label">Email address</label>
             <input type="text" class="form-control" id="email" name="name" required>

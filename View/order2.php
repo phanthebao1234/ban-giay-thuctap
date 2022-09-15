@@ -29,7 +29,7 @@ if (isset($_SESSION['customer_id'])) {
         <div>
             <h3>Sản phẩm thanh toán</h3>
 
-            <table class="table" style="table-loyout: fixed">
+            <table class="table" style="table-layout: fixed">
                 <thead>
                     <tr>
                         <th>Sản phẩm</th>
@@ -66,21 +66,14 @@ if (isset($_SESSION['customer_id'])) {
                 </tbody>
             </table>
         </div>
-
+        <h3>Tổng tiền: <?php echo getTotal(); ?></h3>
     </div>
 
-    <div class="check_info d-flex justify-content-between">
-        <form action="index.php?action=order2&act=order_action" method="POST">
-            <div class="row">
-                <div class="col-md-3">
-                    <label for="voucher_code" class="form-label">Voucher Code</label>
-                    <input type="text" class="form-control" name="voucher_code" value="<?php  ?>">
-                </div>
-            </div>
-        </form>
+    <div class="d-flex flex-row-reverse bd-highlight">
+        
         <?php
             if (isset($_SESSION['customer_id'])) {
-                echo '<a class="btn btn-danger" href="index.php?action=order&act=order_detail">Tiến hành thanh toán</a>';
+                echo '<a class="btn btn-danger" href="index.php?action=order2&act=order_detail">Tiến hành thanh toán</a>';
             } else {
                 echo '<a class="btn btn-warning" href="index.php?action=auth&act=login">Vui lòng đăng nhập trước khi thanh toán</a>';
             }

@@ -11,7 +11,7 @@
                 <th>Voucher End Day</th>
                 <th>Voucher Sale (%)</th>
                 <th>Voucher Count</th>
-                <th>Sửa</th>
+                <!-- <th>Sửa</th> -->
                 <th>Xóa</th>
                 <th>Khôi phục</th>
             </tr>
@@ -32,11 +32,11 @@
                     <td><?php echo $set['voucher_end'] ?></td>
                     <td><?php echo $set['voucher_sale']*100; ?></td>
                     <td><?php echo $set['voucher_count']?></td>
-                    <td>
+                    <!-- <td>
                         <a class="btn btn-warning" href="index.php?action=voucher&act=update&id=<?php echo $set['voucher_id']?>">Sửa</a>
-                    </td>
+                    </td> -->
                     <td>
-                        <a class="btn btn-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa Voucher: <?php echo $voucher_name ?>')" href="index.php?action=voucher&act=delete&id=<?php echo $set['voucher_id']?>">Xóa</a>
+                        <a class="btn btn-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa Voucher: <?php echo $voucher_name ?>')" href="index.php?action=voucher&act=delete_permanently&id=<?php echo $set['voucher_id']?>">Xóa</a>
                     </td>
                     <td>
                         <a class="btn btn-info" href="index.php?action=voucher&act=restore_action&id=<?php echo $set['voucher_id'] ?>">Khôi phục</a>

@@ -1,3 +1,5 @@
+const { default: Swal } = require("sweetalert2");
+
 function readURL(input) {
     if (input.files && input.files[0]) {
         console.log(input.files[0]);
@@ -10,4 +12,3 @@ function readURL(input) {
         reader.readAsDataURL(input.files[0]);
     }
 }
-

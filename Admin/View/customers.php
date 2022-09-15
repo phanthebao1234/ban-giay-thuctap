@@ -1,9 +1,12 @@
 <div class="container-fluid">
     <h1 class="text-capitalize">Danh sách Khách hàng</h1>
-    <div class="d-flex flex-row mt-3">
-        <a href="index.php?action=customer&act=insert" class="btn btn-primary me-3">&plus; Thêm mới</a>
-        <a href="index.php?action=user&act=import" class="btn btn-info me-3">&uArr; Nhập CSV</a>
-        <a href="index.php?action=user&act=export" class="btn btn-success">&dArr; Xuất file Excel</a>
+    <div class="d-flex justify-content-between flex-row mt-3">
+        <div>
+            <a href="index.php?action=customer&act=insert" class="btn btn-primary me-3">&plus; Thêm mới</a>
+            <a href="index.php?action=user&act=import" class="btn btn-info me-3">&uArr; Nhập CSV</a>
+            <a href="index.php?action=user&act=export" class="btn btn-success">&dArr; Xuất file Excel</a>
+        </div>
+        <a class="text-decoration-underline fst-italic" href="index.php?action=customers&act=restore">Các khách hàng đã xóa <i class="fas fa-lg fa-trash-alt"></i></a>
     </div>
     <table class="table table-striped table-bordered table-hover my-3">
         <thead>

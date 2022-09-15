@@ -55,5 +55,10 @@
             $query = "update voucher set voucher_status = 1 where voucher_id=$voucher_id";
             $db -> exec($query);
         }
+        public function deleteVoucherPermanently($voucher_id) {
+            $db = new connect();
+            $query = "delete from voucher where voucher_id=$voucher_id";
+            $db -> exec($query);
+        }
     }
 ?>

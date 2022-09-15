@@ -9,6 +9,7 @@
             $title = 'Cập nhật Voucher';
             if(isset($_GET['id'])) {
                 $voucher_id = $_GET['id'];
+                echo $voucher_id;
                 $voucher = new Voucher();
                 $result = $voucher-> getDetailVoucher($voucher_id);
                 $voucher_code = $result['voucher_code'];
@@ -40,7 +41,7 @@
     ?>
     <form>
         <div class="row">
-            <input type="hidden" name="voucher_id" value="<?php if(isset($voucher_id)) ?>">
+            <input type="hidden" name="voucher_id" value="<?php if(isset($voucher_id)) echo $voucher_id;?>">
             <div class="col-md-3">
                 <label for="voucher_code" class="form-label">Voucher Code</label>
                 <input type="text" class="form-control" name="voucher_code" value="<?php if (isset($voucher_id)) echo $voucher_code ?>">

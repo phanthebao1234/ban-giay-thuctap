@@ -19,12 +19,17 @@
                 $customer_id = $_GET['customer_id'];
                 $customer = new Customers();
                 $customer->deleteCustomer($customer_id);
-                echo '<meta http-equiv="refresh" content="0;url=./index.php?action=customer"/>';
-                echo '<script>alert("Xóa thành công")</script>!';
+                if(isset($customer)) {
+                    echo '<meta http-equiv="refresh" content="0;url=./index.php?action=customer"/>';
+                    echo '<script>alert("Xóa thành công")</script>!';
+                }
             }
             else {
-                echo '<script>alert("Xóa không thành công! Vui lòng thực hiện lại")</script>';
-                echo '<meta http-equiv="refresh" content="0;url=./index.php?action=customer"/>';
+                if (isset($customer)) {
+                    echo '<script>alert("Xóa không thành công! Vui lòng thực hiện lại")</script>';
+                    echo '<meta http-equiv="refresh" content="0;url=./index.php?action=customer"/>';
+                }
+                
             }
             break;
         case 'insert_action':
@@ -40,8 +45,10 @@
                 $image = $_POST['image'];
                 $customer = new Customers();
                 $customer->insertCustomers($firstname, $lastname, $render, $birthday, $phone, $email, $password, $address, $image);
-                echo '<script>alert("Thêm khách hàng thành công!")</script>';
-                echo '<meta http-equiv="refresh" content="0;url=./index.php?action=customer"/>';
+                if(isset($customer)) {
+                    echo '<script>alert("Thêm khách hàng thành công!")</script>';
+                    echo '<meta http-equiv="refresh" content="0;url=./index.php?action=customer"/>';
+                }
             }
             break;
         case 'update_action':
@@ -57,11 +64,11 @@
                 $address = $_POST['address'];
                 $image = $_POST['image'];
                 $customer = new Customers();
-                $isStatus = $customer->updateCustomer($id, $firstname, $lastname, $render, $birthday, $phone, $email, $password, $address, $image);
-                echo $isStatus;
-                header("Location: ./index.php?action=customer");
-                echo '<script>alert("Cập nhật khách hàng thành công!")</script>';
-                echo '<meta http-equiv="refresh" content="0;url=./index.php?action=customer"/>';
+                $customer->updateCustomer($id, $firstname, $lastname, $render, $birthday, $phone, $email, $password, $address, $image);
+                if(isset($customer)) {
+                    echo '<script>alert("Cập nhật khách hàng thành công!")</script>';
+                    echo '<meta http-equiv="refresh" content="0;url=./index.php?action=customer"/>';
+                }
             }
 
             break;

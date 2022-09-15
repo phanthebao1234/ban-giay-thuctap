@@ -20,6 +20,9 @@
         <tbody>
             <?php
             $i = 0;
+            if(!isset($_SESSION['cart']) || count($_SESSION['cart']) == 0) {
+                // echo '<td rowspan="6"></h3></td>'
+            } else {
             foreach ($_SESSION['cart'] as $key => $item) :
                 $i++;
             ?>
@@ -51,27 +54,27 @@
                         </td>
                     </form>
                 </tr>
-            <?php endforeach; ?>
+            <?php endforeach; } ?>
         </tbody>
     </table>
     <div class="d-flex">
-        <h3 class="">Tổng tiền:
+        <h3 class="">Tổng tiền :
             <?php
             echo getTotal();
             ?>
         </h3>
-        <div class="voucher">
+        <!-- <div class="voucher">
             <form method="get" action="index.php?action=voucher&act=voucher_action" id="voucher-form">
                 <div class="input-group flex-nowrap">
                     <input type="text" class="form-control" placeholder="Nhập mã giảm giá" name="voucher_code" id="voucher_code">
                     <button type="submit" class="btn btn-danger" id="submit" name="submit">Nhập voucher</button>
                 </div>
             </form>
-        </div>
+        </div> -->
     </div>
     <?php
     if (isset($_SESSION['customer_id'])) {
-        echo '<a class="btn btn-danger" href="index.php?action=order&act=order_detail">Tiến hành thanh toán</a>';
+        echo '<a class="btn btn-danger" href="index.php?action=order2">Tiến hành thanh toán</a>';
     } else {
         echo '<a class="btn btn-warning" href="index.php?action=auth&act=login">Vui lòng đăng nhập trước khi thanh toán</a>';
     }

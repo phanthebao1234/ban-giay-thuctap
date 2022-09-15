@@ -44,8 +44,8 @@
                 $customer_address = $_POST['customer_address'];
                 $customer_image = $_POST['customer_image'];
                 $customer = new Customer();
-                $isStatus = $customer->regristerCustomer($customer_firstname, $customer_lastname, $customer_render, $customer_birthday, $customer_phone, $customer_email, $customer_password, $customer_address, $customer_image);
-                if($isStatus) {
+                $customer->regristerCustomer($customer_firstname, $customer_lastname, $customer_render, $customer_birthday, $customer_phone, $customer_email, $customer_password, $customer_address, $customer_image);
+                if(isset($customer)) {
                     echo '<script>alert("Tao tai khoan thanh cong")</script>';
                     echo '<meta http-equiv="refresh" content="0;url=./index.php?action=home"/>';
                 }

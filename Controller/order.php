@@ -19,7 +19,7 @@
                 $bill_id = $bill -> insertBill($customer_id);
                 $_SESSION['bill_id'] = $bill_id;
 
-                $total = 0;
+                $total = $_SESSION['total'];
                 foreach($_SESSION['cart'] as $key=>$item) {
                     $bill->insertOrderDetail($bill_id,$item['product_id'],$item['product_quantity'],$item['total']);
                     // chèn vào đc bảng chi tiết hóa đơn
@@ -27,6 +27,9 @@
                     $total+=$item['total'];
                 }
                 $bill -> updateOrderTotal($bill_id, $total);
+                if($bill) {
+                    unset($_SESSION['cart']);
+                }
                 echo '<meta http-equiv="refresh" content="0;url=./index.php?action=order"/>';
                     
             }
