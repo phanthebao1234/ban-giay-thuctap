@@ -20,41 +20,44 @@
         <tbody>
             <?php
             $i = 0;
-            if(!isset($_SESSION['cart']) || count($_SESSION['cart']) == 0) {
-                // echo '<td rowspan="6"></h3></td>'
-            } else {
-            foreach ($_SESSION['cart'] as $key => $item) :
-                $i++;
-            ?>
-                <tr>
-                    <form action="index.php?action=cart&act=update&id=<?php echo $item['product_id'] ?>" method="POST" class="cart-form">
-                        <td>
-                            <input type="checkbox" name="cart_check" id="cart_check" onclick="handle( <?php echo $item['product_id']?>,'<?php echo $item['product_name'] ?>', <?php echo $item['product_quantity'] ?>, )">
-                        </td>
-                        <td>
-                            <?php echo $i ?>
-                        </td>
-                        <td>
-                            <img src="Content/images/<?php echo $item['product_image'] ?>" alt="" style="width: 100%; height: auto" rowspan="2">
-                        </td>
-                        <td>
-                            <?php echo $item['product_name'] ?>
-                        </td>
-                        <td>
-                            <?php echo  number_format($item['product_price']) ?>
-                        </td>
-                        <td>
-                            <input type="number" name="newqty[<?php echo $item['product_id'] ?>]" value="<?php echo $item['product_quantity'] ?>">
-                        </td>
-                        <td>
-                            <button class="btn btn-primary" type="submit" name="submit">Cập nhật</button>
-                        </td>
-                        <td>
-                            <a class="btn btn-danger" href="index.php?action=cart&act=delete&id=<?php echo $item['product_id'] ?>" onclick="return confirm('Bạn có chắc chắn xóa')">Xóa</a>
-                        </td>
-                    </form>
-                </tr>
-            <?php endforeach; } ?>
+            if(!isset($_SESSION['cart']) && count($_SESSION['cart']) == 0) :
+                echo '<h3>Bạn chưa có sản phẩm nào</h3>';
+            else:
+                foreach ($_SESSION['cart'] as $key => $item):
+                    $i++;
+                ?>
+                    <tr>
+                        <form action="index.php?action=cart&act=update&id=<?php echo $item['product_id'] ?>" method="POST" class="cart-form">
+                            <td>
+                                <input type="checkbox" name="cart_check" id="cart_check" onclick="handle( <?php echo $item['product_id']?>,'<?php echo $item['product_name'] ?>', <?php echo $item['product_quantity'] ?>, )">
+                            </td>
+                            <td>
+                                <?php echo $i ?>
+                            </td>
+                            <td>
+                                <img src="Content/images/<?php echo $item['product_image'] ?>" alt="" style="width: 100%; height: auto" rowspan="2">
+                            </td>
+                            <td>
+                                <?php echo $item['product_name'] ?>
+                            </td>
+                            <td>
+                                <?php echo  number_format($item['product_price']) ?>
+                            </td>
+                            <td>
+                                <input type="number" name="newqty[<?php echo $item['product_id'] ?>]" value="<?php echo $item['product_quantity'] ?>">
+                            </td>
+                            <td>
+                                <button class="btn btn-primary" type="submit" name="submit">Cập nhật</button>
+                            </td>
+                            <td>
+                                <a class="btn btn-danger" href="index.php?action=cart&act=delete&id=<?php echo $item['product_id'] ?>" onclick="return confirm('Bạn có chắc chắn xóa')">Xóa</a>
+                            </td>
+                        </form>
+                    </tr>
+                <?php 
+                    endforeach; 
+                    endif;
+                ?>
         </tbody>
     </table>
     <div class="d-flex">

@@ -22,22 +22,21 @@
 <body>
 <!-- <i class="fas fa-wrench"></i> -->
     <?php 
-        if(isset($_SESSION['user_id'])) {
+        if(isset($_SESSION['id'])) {
             include 'View/header.php';
-            $ctrl = 'home';
+            $ctrl = 'customer';
             if(isset($_GET['action'])) {
                 $ctrl = $_GET['action'];
             }
             include 'Controller/'. $ctrl. '.php';
-            include 'View/footer.php';
         } else {
             $ctrl = 'auth';
             if(isset($_GET['action'])) {
                 $ctrl = $_GET['action'];
             }
             include 'Controller/'. $ctrl. '.php';
-            
         }
+        include 'View/footer.php';
     ?> 
     <scirpt src="Content/js/main.js"></scirpt>
     <script src="Content/js/sb-admin-2.min.js"></script>

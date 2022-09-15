@@ -9,7 +9,6 @@
             include 'View/loginAdmin.php';
             break;
         case 'login':
-            echo 'Heloooooo';
             include 'View/loginAdmin.php';
             break;
         case 'login_action':
@@ -30,11 +29,13 @@
                     $_SESSION['birthday'] = $isLogin['user_birthday'];
                     $_SESSION['status'] = $isLogin['user_status'];
                     $_SESSION['roll'] = $isLogin['user_roll'];
-                    echo '<script>alert("Login thanh cong!")</script>';
-                    echo '<meta http-equiv="refresh" content="0;url=./index.php?action=home"/>';
+                    $_SESSION['address'] = $isLogin['user_address'];
+                    $_SESSION['password'] = $isLogin['user_password'];
+                    echo '<script>alert("Đăng nhập thành công!")</script>';
+                    echo '<meta http-equiv="refresh" content="0;url=./index.php"/>';
                 } else {
-                    echo '<script>alert("Login khong thanh cong!")</script>';
-                    echo '<meta http-equiv="refresh" content="0;url=./index.php?action=auth"/>';
+                    echo '<script>alert("Đăng nhập không thành công!")</script>';
+                    echo '<meta http-equiv="refresh" content="0;url=./index.php?action=customer"/>';
                 }
             }
             break;
@@ -48,8 +49,13 @@
             unset($_SESSION['birthday']);
             unset($_SESSION['status']);
             unset($_SESSION['roll']);
-            echo '<script>alert("Logout thanh cong!")</script>';
+            unset($_SESSION['password']);
+            unset($_SESSION['address']);
+            echo '<script>alert("Đăng xuất thành công!")</script>';
             echo '<meta http-equiv="refresh" content="0;url=./index.php?action=auth&act=login"/>';
+            break;
+        case 'profile':
+            include 'View/myUser.php';
             break;
         default:
             # code...

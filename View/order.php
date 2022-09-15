@@ -1,6 +1,6 @@
 <div class="container">
     <?php 
-        if(!isset($_SESSION['customer_id']) || count($_SESSION['cart']) == 0):
+        if(!isset($_SESSION['cart']) || count($_SESSION['cart']) == 0):
             echo '<script> alert("Bạn chưa đăng nhập");</script>';
             echo '<meta http-equiv="refresh" content="0;url=./index.php?action=auth&act=login"/>';
         else:     
