@@ -17,7 +17,7 @@
 
         <!-- Nav Item - Dashboard -->
         <li class="nav-item active">
-            <a class="nav-link" href="index.php?action=home&act=doanhthu">
+            <a class="nav-link" href="index.php?action=order">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Doanh Thu</span></a>
         </li>
@@ -107,7 +107,7 @@
 
         <!-- Nav Item - Charts -->
         <li class="nav-item">
-            <a class="nav-link" href="charts.html">
+            <a class="nav-link" href="index.php?action=home&act=chart">
                 <i class="fas fa-fw fa-chart-area"></i>
                 <span>Charts</span></a>
         </li>

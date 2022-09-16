@@ -1,6 +1,6 @@
 <div class="container">
-    <h1>Chọn phương thức thanh toán và nhập Voucher</h1>
-    <form action="index.php?action=order2&act=order_detail_action" method="POST">
+    <h1 class="text-danger">Chọn phương thức thanh toán và nhập Voucher</h1>
+    <form class="my-3" action="index.php?action=order2&act=order_detail_action" method="POST">
         <div class="d-flex justify-content-evenly">
             <div>
                 <h3>Chọn phương thức thanh toán</h3>

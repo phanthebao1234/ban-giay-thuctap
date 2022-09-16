@@ -36,7 +36,7 @@
             ?></h4>
 
             <h3 class="text-danger fw-bold my-3" style="text-decoration: underline">
-                Giá: <?php echo $giasanpham ?> đ
+                Giá: <?php echo number_format($giasanpham); ?> đ
             </h3>
 
             <label for="quantity">Số lượng: </label>

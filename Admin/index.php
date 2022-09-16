@@ -44,8 +44,11 @@
     <script src="Content/js/jquery.easing.min.js"></script>
     <script src="../node_modules/jquery/dist/jquery.min.js"></script>
     <script src="../node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
+    <!-- <script src="Content/js/chart-bar-demo.js"></script>
+    <script src="Content/js/chart-area-demo.js"></script> -->
     <!-- Page level plugins -->
-    <!-- <script src="Content/js/Chart.min.js"></script> -->
+    <script src="Content/js/Chart.min.js"></script>
+    <script src="Content/js/charts-loader.js"></script>
 
     <!-- Page level custom scripts -->
     <!-- <script src="Content/js/chart-area-demo.js"></script>

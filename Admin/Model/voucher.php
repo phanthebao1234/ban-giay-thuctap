@@ -1,10 +1,17 @@
 <?php 
     class Voucher {
-        public function __contruct() {} 
+        public function __contruct() {}
+        
+        public function getListAllVoucher() {
+            $db = new connect();
+            $query = "select * from voucher";
+            $result = $db-> getList($query);
+            return $result;
+        }
 
         public function getListAllVoucherActive() {
             $db = new connect();
-            $query = "select * from voucher where voucher_status=1";
+            $query = "select voucher_code, voucher_name, voucher_start, voucher_end, voucher_sale, voucher_count, voucher_status from voucher where voucher_status=1";
             $result = $db -> getList($query);
             return $result;
         }

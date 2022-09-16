@@ -87,6 +87,10 @@
                 }
             }
             break;
+        case 'export':
+            include 'View/exportVoucher.php';
+            // echo '<meta http-equiv="refresh" content="0;url=./index.php?action=voucher"/>';
+            break;
         default:
             include 'View/voucher.php';
             break;

@@ -41,8 +41,19 @@
         case 'order_detail_action': 
             if($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $pttt = 0;
+                
                 if(isset($_POST['phuongthuc'])) {
                     $pttt = $_POST['phuongthuc'];
+                    if($pttt == 'nganhang') {
+                        $_SESSION['phuongthuc'] = 'Ngân hàng';
+                        $giamtt = 0.1;
+                    } else if ($pttt == 'momo') {
+                        $_SESSION['phuongthuc'] = 'Ví MOMO';
+                        $giamtt = 0.05;
+                    } else if ($pttt == 'tructiep') {
+                        $_SESSION['phuongthuc'] = 'Thanh toán trực tiếp';
+                        $giamtt = 0;
+                    }
                 }
                 $voucher_sale = 0;
                 if(isset($_POST['voucher_code'])) {
@@ -50,22 +61,19 @@
                 }
                 $voucher = new Voucher();
                 $result = $voucher-> getVoucher($voucher_code);
-                if(isset($reuslt)) {
+                if(!isset($result)) {
                     echo '<script>alert("Mã voucher không chính xác")</script>';
-                }
-                if(isset($_POST['phuongthuc'])) {
-                    if($pttt == 'nganhang') {
-                        $giamtt = 0.1;
-                    } else if ($pttt == 'momo') {
-                        $giamtt = 0.05;
-                    } else if ($pttt == 'tructiep') {
-                        $giamtt = 0;
-                    }
-                }
-
-                if(isset($result)) {
+                } else {
                     $voucher_sale = $result['voucher_sale'];
-                    $_SESSION['total'] = getTotal($voucher_sale, $giamtt);
+                    $voucher_count= $result['voucher_count'];
+                    echo '<script>alert("'.$voucher_count.'")</script>';
+                    if($voucher_count == 0) {
+                        echo '<script>alert("Voucher đã hết lượt sử dụng")</script>';
+                        $_SESSION['total'] = getTotal(0, $giamtt);
+                    } else {
+                        $voucher -> updateCountVoucher($voucher_code);
+                        $_SESSION['total'] = getTotal($voucher_sale, $giamtt);
+                    }
                 }
                 echo '<meta http-equiv="refresh" content="0;url=./index.php?action=order2&act=pay"/>';
                 // echo getTotal($voucher_sale, $giamtt);
@@ -79,9 +87,9 @@
                 $bill_id = $bill -> insertBill($customer_id);
                 $_SESSION['bill_id'] = $bill_id;
 
-                $total = (int) $_SESSION['total'] + 0;
+               
                 foreach($_SESSION['cart'] as $key=>$item) {
-                    $bill->insertOrderDetail($bill_id,$item['product_id'],$item['product_quantity'],$item['total']);
+                    $bill->insertOrderDetail($bill_id,$item['product_id'],$item['product_quantity'],$_SESSION['total']);
                     $product -> updateProductAfterPay($item['product_id'], $item['product_quantity']);
                 }
                 $bill -> updateOrderTotal($bill_id, $total);

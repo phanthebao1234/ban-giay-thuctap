@@ -21,9 +21,9 @@ if (isset($_SESSION['customer_id'])) {
             <p>Email gửi hóa đơn: <span><?php echo $customer_email ?> </p>
             <p>
                 <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#change">
-                    Launch demo modal
+                    Cập nhật địa chỉ nhận hàng
                 </button>
-                <a href="index.php?action=customer&act=update">Thay đổi</a>
+                <!-- <a href="index.php?action=customer&act=update">Thay đổi</a> -->
             </p>
         </div>
         <div>
@@ -66,7 +66,7 @@ if (isset($_SESSION['customer_id'])) {
                 </tbody>
             </table>
         </div>
-        <h3>Tổng tiền: <?php echo getTotal(); ?></h3>
+        <h3>Tổng tiền: <?php echo number_format(getTotal()); ?></h3>
     </div>
 
     <div class="d-flex flex-row-reverse bd-highlight">

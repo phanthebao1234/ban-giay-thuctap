@@ -44,6 +44,9 @@
                 echo '<meta http-equiv="refresh" content="0;url=./index.php?action=cart"/>';
             }
             break;
+        case 'status':
+            include 'View/status.php';
+            break;
         default:
             include 'View/cart.php';
             break;

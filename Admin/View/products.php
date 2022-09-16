@@ -64,7 +64,7 @@
         // echo "Số lượng sản phẩm: ". $countProducts['total'];
     ?>
 
-    <table class="table align-middle table-bordered table-striped table-hover ">
+    <table class="table align-middle table-bordered table-hover ">
         <thead>
             <tr>
                 <th>ID</th>
@@ -81,12 +81,14 @@
         </thead>
         <tbody>
             <?php
-           
-            
-            while ($set = $results->fetch()) :
+                $i= 0;
+                while ($set = $results->fetch()) :
+                $i++;
             ?>
-                <tr class="align-middle">
-                    <th><?php echo $set['id_sanpham'] ?></th>
+                <tr class="align-middle <?php if ($set['TonKho'] <= 5 && $set['TonKho'] >= 0) {
+                     echo 'table-warning';
+                } ?>">
+                    <th><?php echo $i ?></th>
                     <th><?php echo $set['TenSanPham'] ?></th>
                     <th><?php echo number_format($set['GiaSanPham']); ?></th>
                     <th><img src="../../Content/images/<?php echo $set['HinhSanPham'] ?>" width="50%" alt=""></th>

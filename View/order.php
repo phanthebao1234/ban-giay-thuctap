@@ -34,7 +34,8 @@
                         <td colspan="2"><?php echo $result['customer_phonenumber'];?></td>
                     </tr>
                     <tr>
-
+                        <td colspan="2">Phương thức thanh toán: </td>
+                        <td colspan="2"><?php echo $_SESSION['phuongthuc'] ?></td>
                     </tr>
                 </tbody>
             </table>
@@ -58,17 +59,20 @@
                         <td><?php echo $i; ?></td>
                         <td><?php echo $set['TenSanPham']?></td>
                         <td><?php echo $set['quantity']?></td>
-                        <td><?php echo $set['total'] ?></td>
+                        <td><?php echo number_format($set['total']) ?></td>
                     </tr>
                     <tr>
                     <?php
                         endwhile;
                     ?>
-            <td colspan="3">
+            <td colspan="2">
               <b>Tổng Tiền</b>
             </td>
+            <td>
+                <p>Số tiền giảm: <?php echo number_format(getTotal() - $_SESSION['total']) ; ?></p>
+            </td>
             <td style="float: right;" rowspan="2">
-              <b><?php echo $_SESSION['total'];?> <sup><u>đ</u></sup></b>
+              <b><?php echo number_format($_SESSION['total']);?> <sup><u>đ</u></sup></b>
             </td>
             
           </tr>

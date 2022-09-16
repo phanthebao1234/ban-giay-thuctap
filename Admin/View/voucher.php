@@ -8,7 +8,7 @@
         </div>
         <a class="text-decoration-underline fst-italic" href="index.php?action=voucher&act=restore">Các Voucher đã xóa <i class="fas fa-lg fa-trash-alt"></i></a>
     </div>
-    <table class="table table-striped table-bordered table-hover my-3">
+    <table class="table table-bordered table-hover my-3">
         <thead>
             <tr>
                 <th>STT</th>
@@ -30,7 +30,7 @@
                 while ($set = $results->fetch()): 
                     $i++;
             ?>
-                <tr>
+                <tr <?php if($set['voucher_count'] == 0) echo 'class="table-warning"'?>>
                     <td><?php echo $i; ?></td>
                     <td><?php echo $set['voucher_code'] ?></td>
                     <td><?php echo $set['voucher_name']?></td>

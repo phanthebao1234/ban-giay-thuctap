@@ -8,6 +8,9 @@
         case 'home':
             include 'View/home.php';
             break;
+        case 'chart':
+            include 'View/dashboard.php';
+            break;
         case 'sendMail':
             include 'View/sendMail.php';
             break;

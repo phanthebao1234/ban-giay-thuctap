@@ -23,11 +23,11 @@
             <?php echo '<a style="text-decoration: none; color: #fff" href="index.php?action=auth&act=viewprofile">' . $_SESSION['customer_firstname'] . ' ' . $_SESSION['customer_lastname'] . '</a>'; ?>
           </button>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item text-danger" href="index.php?action=">View Profile</a></li>
-            <li><a class="dropdown-item text-danger" href="index.php?action=cart">View Cart</a></li>
+            <li><a class="dropdown-item text-danger text-capitalize" href="index.php?action=">Xem hồ sơ</a></li>
+            <li><a class="dropdown-item text-danger text-capitalize" href="index.php?action=cart&act=status">Xem đơn đặt hàng</a></li>
             <!-- <li><a class="dropdown-item" href="#">Something else here</a></li> -->
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item text-danger" href="index.php?action=auth&act=logout_action">Log out</a></li>
+            <li><a class="dropdown-item text-danger text-capitalize" href="index.php?action=auth&act=logout_action">Đăng xuất</a></li>
           </ul>
         </div>
           <?php
@@ -35,6 +35,11 @@
           echo '<a class="btn btn-success " href="index.php?action=auth">Login</a>';
         }
         ?>
+        <div class="cart mx-3" >
+          <a href="index.php?action=cart" class="btn btn-primary">
+            <i class="fal fa-shopping-cart fa-lg"></i>
+          </a>
+        </div>
       </div>
     </div>
   </div>

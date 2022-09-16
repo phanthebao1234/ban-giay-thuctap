@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container">
     <?php
     if (!isset($_SESSION['cart'])  || count($_SESSION['cart']) == 0) {
         echo '<p class="text-danger">Bạn chưa có sản phẩm nào trong giỏ hàng</p>';
@@ -63,7 +63,7 @@
     <div class="d-flex">
         <h3 class="">Tổng tiền :
             <?php
-            echo getTotal();
+            echo number_format(getTotal());
             ?>
         </h3>
         <!-- <div class="voucher">
