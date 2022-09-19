@@ -28,6 +28,11 @@ if (isset($_GET['act'])) {
 ?>
 
 <div class="container mt-3">
+    <h1 class="">
+        <?php
+            echo $title;
+        ?>
+    </h1>
     <?php
     if ($act == 'insert') {
         echo '<form action="index.php?action=customer&act=insert_action" method="POST" enctype="multiple/form-data">';
@@ -75,8 +80,9 @@ if (isset($_GET['act'])) {
             </div>
             <div class="col-md-6">
                 <label for="" class="form-label">Image</label>
-                <img src="../../Content/images/<?php if (isset($customer_id)) echo $customer_image ?>" alt="">
-                <!-- <input type="file" class="form-control" name="image"> -->
+                <div class="d-block">
+                    <img src="../../Content/images/<?php if (isset($customer_id)) echo $customer_image ?>" alt="" id="showImage" width="30%              ">
+                </div>
                 <input class="form-control form-control-lg" id="image" name="image" type="file" onchange="readURL(this);">
             </div>
             <div class="col-md-12">
@@ -93,3 +99,18 @@ if (isset($_GET['act'])) {
         </div>
     </form>
 </div>
+
+<script>
+    function readURL(input) {
+    if (input.files && input.files[0]) {
+        console.log(input.files[0]);
+        var reader = new FileReader();
+            
+        reader.onload = function (e) {
+            $('#showImage').attr('src', e.target.result).width(150).height(200);
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+  }
+  
+</script>

@@ -83,7 +83,8 @@
             <?php
                 $i= 0;
                 while ($set = $results->fetch()) :
-                $i++;
+                    $images = explode(';', $set['HinhSanPham']);
+                    $i++;
             ?>
                 <tr class="align-middle <?php if ($set['TonKho'] <= 5 && $set['TonKho'] >= 0) {
                      echo 'table-warning';
@@ -91,7 +92,10 @@
                     <th><?php echo $i ?></th>
                     <th><?php echo $set['TenSanPham'] ?></th>
                     <th><?php echo number_format($set['GiaSanPham']); ?></th>
-                    <th><img src="../../Content/images/<?php echo $set['HinhSanPham'] ?>" width="50%" alt=""></th>
+                    <th><?php foreach ($images as $key => $value): ?>
+                        <img src="../../Content/images/<?php echo $value;?>" width="20%" alt="">
+                        <?php endforeach; ?>
+                    </th>
                     <th><?php echo $set['Size'] ?></th>
                     <th><?php echo $set['ThuongHieu'] ?></th>
                     <th><?php echo $set['MoTa'] ?></th>

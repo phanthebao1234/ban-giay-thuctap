@@ -11,15 +11,15 @@
         }
 
         // Thêm dữ liệu
-        public function insertUsers($user_firstname, $user_lastname, $user_render, $user_birthday, $user_phonenumber, $user_email, $user_password, $user_address, $user_status, $user_roll) {
+        public function insertUsers($user_firstname, $user_lastname, $user_render, $user_birthday, $user_phonenumber, $user_email, $user_password, $user_address, $user_status, $user_roll, $user_number_home) {
             $db = new connect();
-            $query = "insert into users (user_id, user_firstname, user_lastname, user_render, user_birthday, user_phonenumber, user_email, user_password, user_address, user_status, user_roll)
-            values (Null, '$user_firstname', '$user_lastname', '$user_render', '$user_birthday', '$user_phonenumber', '$user_email', '$user_password', '$user_address', '$user_status', '$user_roll')";
+            $query = "insert into users (user_id, user_firstname, user_lastname, user_render, user_birthday, user_phonenumber, user_email, user_password, user_address, user_status, user_roll, user_number_home)
+            values (Null, '$user_firstname', '$user_lastname', '$user_render', '$user_birthday', '$user_phonenumber', '$user_email', '$user_password', '$user_address', '$user_status', '$user_roll', '$user_number_home')";
             $db -> exec($query);
         }
 
         // Cập nhật dữ liệu
-        public function updateUser($user_id, $user_firstname, $user_lastname, $user_render, $user_birthday, $user_phonenumber, $user_email, $user_password, $user_address, $user_status, $user_roll) {
+        public function updateUser($user_id, $user_firstname, $user_lastname, $user_render, $user_birthday, $user_phonenumber, $user_email, $user_password, $user_address, $user_status, $user_roll, $user_number_home) {
             $db = new connect();
             $query = "update users set
             user_id='$user_id',
@@ -32,7 +32,8 @@
             user_password='$user_password',
             user_address='$user_address',
             user_status='$user_status',
-            user_roll='$user_roll'
+            user_roll='$user_roll',
+            user_number_home='$user_number_home'
             where user_id='$user_id'";
             $db -> exec($query);
         }
@@ -67,6 +68,14 @@
             or (user_phonenumber='$user_phonenumber' and user_password='$user_password')";
             $result = $db->getInstance($query);
             return $result;
+        }
+
+        public function deleteConfirmUser($user_id) {
+            $db = new connect();
+            $query = "update users 
+            set user_status = 0
+            where user_id = '$user_id'";
+            $db -> exec($query);
         }
     }
 ?>

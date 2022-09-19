@@ -44,47 +44,61 @@ if (isset($_GET['id_sanpham'])) {
         <div class="edit_form">
             <?php
                 if ($ac == 'insert') {
-                    echo '<form action="index.php?action=product&act=insert_action" method="POST" enctype="multipart/form-data" class="form-control">';
+                    echo '<form action="index.php?action=product&act=insert_action" method="POST" enctype="multipart/form-data" class="row g-3">';
                 }
                 else if ($ac == 'update') {
-                    echo '<form action="index.php?action=product&act=update_action" method="POST" enctype="multipart/form-data" class="form-control">';
+                    echo '<form action="index.php?action=product&act=update_action" method="POST" enctype="multipart/form-data" class="row g-3">';
                 }
             ?>
             <form>
-                <div class="col-md-12">
+                <div class="col-md-3">
                     <label for="id_sanpham" class="form-label">ID</label>
                     <input type="text" class="form-control"  id="id_sanpham" name="id_sanpham" value="<?php if(isset($id_sanpham)) echo $id_sanpham; ?>" readonly>
                 </div>
-                <div class="col-md-12">
+                <div class="col-12">
                     <label for="tensanpham" class="form-label">Tên Sản Phẩm</label>
                     <input type="text" class="form-control " id="tensanpham" name="tensanpham" value="<?php if(isset($id_sanpham)) echo $tensanpham; ?>" required>
                 </div>
-                <div class="col-md-6">
-                    <label for="giasanpham" class="form-label">Giá Sản Phẩm</label>
-                    <input type="text" class="form-control" id="giasanpham" name="giasanpham" value="<?php if(isset($id_sanpham)) echo $giasanpham; ?>" required>
-                </div>
-                <div class="col-md-6">
-                    <label for="size" class="form-label">Size</label>
-                    <input type="text" class="form-control" id="size" name="size" value="<?php if(isset($id_sanpham)) echo $size; ?>" required>
-                </div>
-                <div class="col-md-6">
+                <div class="col-md-3">
                     <label for="thuonghieu" class="form-label">Thương Hiệu</label>
                     <input type="text" class="form-control" id="thuonghieu" name="thuonghieu" value="<?php if(isset($id_sanpham)) echo $thuonghieu; ?>" required>
                 </div>
-                <div class="col-md-6">
-                    <label for="mota" class="form-label">Mô Tả</label>
-                    <input type="text" class="form-control" id="mota" name="mota" value="<?php if(isset($id_sanpham)) echo $mota; ?>" required>
+                <div class="col-md-3">
+                    <label for="giasanpham" class="form-label">Giá Sản Phẩm</label>
+                    <input type="text" class="form-control" id="giasanpham" name="giasanpham" value="<?php if(isset($id_sanpham)) echo $giasanpham; ?>" required>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-3">
+                    <label for="size" class="form-label">Size</label>
+                    <input type="text" class="form-control" id="size" name="size" value="<?php if(isset($id_sanpham)) echo $size; ?>" required>
+                </div>
+                <div class="col-md-3">
                     <label for="tonkho" class="form-label">Tồn Kho</label>
                     <input type="text" class="form-control" id="tonkho" name="tonkho" value="<?php if(isset($id_sanpham)) echo $tonkho; ?>" required>
                 </div>
-                <div class="col-md-6 mb-3">
+                <div class="col-12">
                     <h5>Hình sản phẩm</h5>
-                    <img src="../../Content/images/<?php if (isset($id_sanpham)) echo $hinh_sanpham; ?>" alt="" width="30%" id="showImage"><br>
+                    <div class="d-flex justify-content-between">
+                        <?php if (isset($id_sanpham)): 
+                            $arrayImg = explode(';', $hinh_sanpham);
+                            foreach ($arrayImg as $key => $value):
+
+                            
+                        ?>
+                        <img src="../../Content/images/<?php echo $value; ?>" alt="" width="20%" id="showImage"><br>
+                        <?php 
+                            endforeach;
+                            endif; 
+                        ?>
+                    </div>
                     <label for="image" class="form-label">Chọn file để upload</label>
-                    <input class="form-control form-control-lg" id="image" name="image" type="file" onchange="readURL(this);"  required>
+                    <input class="form-control form-control-lg" id="image" name="image[]" multiple type="file" onchange="readURL(this);" value="<?php if(isset($id_sanpham)) echo $hinh_sanpham ?>">
                 </div>
+               <div class="col-md-12">
+                <label for="">Mô tả</label>
+                <textarea id="editor" name="mota">
+                    <?php if(isset($id_sanpham)) echo $mota; ?>
+                </textarea>
+               </div>
                 <?php
                 if ($ac == 'insert') {
                     echo '<input type="submit" name="submit" value="Thêm sản phẩm" class="btn btn-primary">';
@@ -98,17 +112,27 @@ if (isset($_GET['id_sanpham'])) {
         </div>
     </div>
 </div>
-
+<script src="https://cdn.ckeditor.com/ckeditor5/12.3.1/classic/ckeditor.js"></script>
 <script>
+    ClassicEditor
+        .create( document.querySelector( '#editor' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+
     function readURL(input) {
     if (input.files && input.files[0]) {
-        console.log(input.files[0]);
-        var reader = new FileReader();
-            
-        reader.onload = function (e) {
-            $('#showImage').attr('src', e.target.result).width(150).height(200);
-        };
-        reader.readAsDataURL(input.files[0]);
+        const arrayInput = Array.from(input.files)
+        console.log(arrayInput);
+        arrayInput.forEach((image, index) => {
+            var reader = new FileReader();
+                
+            reader.onload = function (e) {
+                $('#showImage').attr('src', e.target.result).width(150).height(200);
+            };
+            reader.readAsDataURL(arrayInput[index]);
+        });
+
     }
   }
   

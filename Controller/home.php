@@ -14,5 +14,8 @@
         case 'detail':
             include 'View/detail.php';
             break;
+        case 'input_address':
+            include 'View/inputAddress.php';
+            break;
     }
 ?>

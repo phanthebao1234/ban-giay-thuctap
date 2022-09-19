@@ -18,7 +18,7 @@
                 $account_password = $_POST['password'];
                 $user = new User();
                 $isLogin = $user -> loginUser($account_name, $account_password, $account_name);
-                if($isLogin==true) {
+                if(is_array($isLogin)) {
                     // Khoi tao session
                     $_SESSION['id'] = $isLogin['user_id'];
                     $_SESSION['firstname'] = $isLogin['user_firstname'];

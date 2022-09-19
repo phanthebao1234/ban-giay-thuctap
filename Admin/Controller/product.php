@@ -15,13 +15,15 @@ switch ($action) {
             $tensanpham = $_POST['tensanpham'];
             $giasanpham = $_POST['giasanpham'];
             $hinh = $_FILES['image']['name'];
+            // echo var_dump($hinh);
+            $images = implode(';', $hinh);
             $mota = $_POST['mota'];
             $size = $_POST['size'];
             $thuonghieu = $_POST['thuonghieu'];
             $tonkho = $_POST['tonkho'];
         }
         $sanpham = new Products();
-        $sanpham->insertProduct($tensanpham, $giasanpham, $hinh, $mota, $size, $thuonghieu, $tonkho);
+        $sanpham->insertProduct($tensanpham, $giasanpham, $images, $mota, $size, $thuonghieu, $tonkho);
         if (isset($sanpham)) {
             echo 'Hello';
             uploadImage();
@@ -38,12 +40,13 @@ switch ($action) {
             $tensanpham = $_POST['tensanpham'];
             $giasanpham = $_POST['giasanpham'];
             $hinh = $_FILES['image']['name'];
+            $images = implode(';', $hinh);
             $mota = $_POST['mota'];
             $size = $_POST['size'];
             $thuonghieu = $_POST['thuonghieu'];
             $tonkho = $_POST['tonkho'];
             $sanpham = new Products();
-            $sanpham->updateProduct($id_sanpham, $tensanpham, $giasanpham, $hinh, $mota, $size, $thuonghieu, $tonkho);
+            $sanpham->updateProduct($id_sanpham, $tensanpham, $giasanpham, $images, $mota, $size, $thuonghieu, $tonkho);
             if (isset($sanpham)) {
                 uploadImage();
             }

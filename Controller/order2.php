@@ -66,7 +66,7 @@
                 } else {
                     $voucher_sale = $result['voucher_sale'];
                     $voucher_count= $result['voucher_count'];
-                    echo '<script>alert("'.$voucher_count.'")</script>';
+                    
                     if($voucher_count == 0) {
                         echo '<script>alert("Voucher đã hết lượt sử dụng")</script>';
                         $_SESSION['total'] = getTotal(0, $giamtt);
@@ -76,7 +76,7 @@
                     }
                 }
                 echo '<meta http-equiv="refresh" content="0;url=./index.php?action=order2&act=pay"/>';
-                // echo getTotal($voucher_sale, $giamtt);
+                
             }
             break;
         case 'pay':
@@ -86,21 +86,19 @@
                 $product = new Products();
                 $bill_id = $bill -> insertBill($customer_id);
                 $_SESSION['bill_id'] = $bill_id;
-
-               
                 foreach($_SESSION['cart'] as $key=>$item) {
                     $bill->insertOrderDetail($bill_id,$item['product_id'],$item['product_quantity'],$_SESSION['total']);
                     $product -> updateProductAfterPay($item['product_id'], $item['product_quantity']);
                 }
                 $bill -> updateOrderTotal($bill_id, $total);
+                $bill -> insertOrder($bill_id, $customer_id);
                 echo '<meta http-equiv="refresh" content="0;url=./index.php?action=order"/>';
-                    
+                
             }
             break;
-            // include 'View/order.php';
-            // break;
+           
         case 'pay_action':
-            unset($_SESSION['cart']);
+            $_SESSION['cart'] = [];
             $_SESSION['total'] = 0;
             getTotal();
             echo '<script>alert("Thanh toán thành công")</script>';

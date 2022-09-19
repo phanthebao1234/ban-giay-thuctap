@@ -8,7 +8,7 @@
         </div>
         <a class="text-decoration-underline fst-italic" href="index.php?action=customers&act=restore">Các khách hàng đã xóa <i class="fas fa-lg fa-trash-alt"></i></a>
     </div>
-    <table class="table table-striped table-bordered table-hover my-3">
+    <table class="table table-bordered table-hover my-3">
         <thead>
             <tr>
                 <th>ID</th>
@@ -68,7 +68,7 @@
                     <?php echo $set['customer_address'] ?>
                 </td>
                 <td>
-                    <img src="../../Content/images/<?php echo $set['customer_image'] ?>" alt="">
+                    <img src="../../Content/images/<?php echo $set['customer_image'] ?>" alt="" style="width: 60px">
                 </td>
                 <td>
                     <a href="index.php?action=customer&act=update&customer_id=<?php echo $set['customer_id'] ?>" class="btn btn-warning">Sửa</a>

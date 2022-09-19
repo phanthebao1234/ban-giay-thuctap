@@ -17,9 +17,9 @@
 
         <!-- Nav Item - Dashboard -->
         <li class="nav-item active">
-            <a class="nav-link" href="index.php?action=order">
+            <a class="nav-link" href="index.php?action=home&act=chart">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
-                <span>Doanh Thu</span></a>
+                <span>Thông Kê</span></a>
         </li>
 
         <!-- Divider -->
@@ -40,7 +40,19 @@
                 <div class="bg-white py-2 collapse-inner rounded">
                     <!-- <h6 class="collapse-header">Custom Components:</h6> -->
                     <a class="collapse-item" href="index.php?action=product">Danh sách sản phẩm</a>
-                    <a class="collapse-item" href="index.php?action=user">Quản lý khách hàng</a>
+                </div>
+            </div>
+        </li>
+
+        <!-- Nav Item - Utilities Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#user" aria-expanded="true" aria-controls="collapseUtilities">
+                <i class="fas fa-fw fa-user"></i>
+                <span>Người Dùng</span>
+            </a>
+            <div id="user" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="index.php?action=users">Quản lý User</a>
                 </div>
             </div>
         </li>
@@ -48,28 +60,24 @@
         <!-- Nav Item - Utilities Collapse Menu -->
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-                <i class="fas fa-fw fa-wrench"></i>
-                <!-- <i class="fas fa-wrench"></i> -->
-                <span>Utilities</span>
+    
+                <i class="fas fa-fw fa-users"></i>
+                <span>Khách Hàng</span>
             </a>
             <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Custom Utilities:</h6>
                     <a class="collapse-item" href="index.php?action=customer">Quản lý Customer</a>
-                    <a class="collapse-item" href="index.php?action=users">Quản lý User</a>
                 </div>
             </div>
         </li>
 
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseVoucher" aria-expanded="true" aria-controls="collapseVoucher">
-                <i class="fas fa-fw fa-wrench"></i>
-                <!-- <i class="fas fa-wrench"></i> -->
+                <i class="fas fa-fw fa-barcode"></i>
                 <span>Voucher</span>
             </a>
             <div id="collapseVoucher" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Custom Voucher:</h6>
                     <a class="collapse-item" href="index.php?action=voucher">Quản lý Voucher</a>
                     <!-- <a class="collapse-item" href="index.php?action=users">Quản lý User</a> -->
                 </div>
@@ -77,47 +85,42 @@
         </li>
 
 
+        <!-- Nav Item - Utilities Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#menu" aria-expanded="true" aria-controls="collapseUtilities">
+                <i class="fal fa-bars"></i>
+                <span>Danh Mục</span>
+            </a>
+            <div id="menu" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="index.php?action=menu">Quản lý Danh Mục</a>
+                </div>
+            </div>
+        </li>
+
         <!-- Divider -->
         <hr class="sidebar-divider">
 
         <!-- Heading -->
         <div class="sidebar-heading">
-            Addons
+            
         </div>
 
-        <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-                <i class="fas fa-fw fa-folder"></i>
-                <span>Pages</span>
-            </a>
-            <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Login Screens:</h6>
-                    <a class="collapse-item" href="login.html">Login</a>
-                    <a class="collapse-item" href="register.html">Register</a>
-                    <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-                    <div class="collapse-divider"></div>
-                    <h6 class="collapse-header">Other Pages:</h6>
-                    <a class="collapse-item" href="404.html">404 Page</a>
-                    <a class="collapse-item" href="blank.html">Blank Page</a>
-                </div>
-            </div>
-        </li>
+        
 
         <!-- Nav Item - Charts -->
         <li class="nav-item">
-            <a class="nav-link" href="index.php?action=home&act=chart">
+            <a class="nav-link" href="index.php?action=order">
                 <i class="fas fa-fw fa-chart-area"></i>
-                <span>Charts</span></a>
+                <span>Đơn Hàng</span></a>
         </li>
 
         <!-- Nav Item - Tables -->
-        <li class="nav-item">
+        <!-- <li class="nav-item">
             <a class="nav-link" href="tables.html">
                 <i class="fas fa-fw fa-table"></i>
                 <span>Tables</span></a>
-        </li>
+        </li> -->
 
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block">
@@ -125,13 +128,6 @@
         <!-- Sidebar Toggler (Sidebar) -->
         <div class="text-center d-none d-md-inline">
             <button class="rounded-circle border-0" id="sidebarToggle"></button>
-        </div>
-
-        <!-- Sidebar Message -->
-        <div class="sidebar-card d-none d-lg-flex">
-            <img class="sidebar-card-illustration mb-2" src="Content/images/undraw_rocket.svg" alt="...">
-            <p class="text-center mb-2"><strong>SB Admin Pro</strong> is packed with premium features, components, and more!</p>
-            <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to Pro!</a>
         </div>
 
     </ul>
@@ -196,8 +192,14 @@
                         <!-- Dropdown - Alerts -->
                         <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
                             <h6 class="dropdown-header">
-                                Alerts Center
+                                Thông báo
                             </h6>
+                            <!-- Show thông báo 3 đơn đặt hàng gần nhất -->
+                            <?php 
+                                $order = new Order();
+                                $result = $order-> getListOrdersLimit3();
+                                while ($set = $result->fetch()):
+                            ?>
                             <a class="dropdown-item d-flex align-items-center" href="#">
                                 <div class="mr-3">
                                     <div class="icon-circle bg-primary">
@@ -205,33 +207,13 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <div class="small text-gray-500">December 12, 2019</div>
-                                    <span class="font-weight-bold">A new monthly report is ready to download!</span>
+                                    <div class="small text-gray-500"><?php echo $set['order_ngaydat'] ?></div>
+                                    <span class="font-weight-bold"><?php echo $set['order_fullname'].' đã đặt '. $set['order_tensanpham']?></span>
                                 </div>
                             </a>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                <div class="mr-3">
-                                    <div class="icon-circle bg-success">
-                                        <i class="fas fa-donate text-white"></i>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="small text-gray-500">December 7, 2019</div>
-                                    $290.29 has been deposited into your account!
-                                </div>
-                            </a>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                <div class="mr-3">
-                                    <div class="icon-circle bg-warning">
-                                        <i class="fas fa-exclamation-triangle text-white"></i>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="small text-gray-500">December 2, 2019</div>
-                                    Spending Alert: We've noticed unusually high spending for your account.
-                                </div>
-                            </a>
-                            <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+                            <?php endwhile; ?>
+                            
+                            <a class="dropdown-item text-center small text-gray-500" href="index.php?action=order">Tất cả đơn hàng</a>
                         </div>
                     </li>
 
@@ -300,7 +282,9 @@
                     <!-- Nav Item - User Information -->
                     <li class="nav-item dropdown no-arrow">
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                                <?php if(isset($_SESSION['firstname']) && $_SESSION['lastname']) echo $_SESSION['firstname'].' '.$_SESSION['lastname']; ?>
+                            </span>
                             <img class="img-profile rounded-circle" src="Content/images/undraw_profile.svg">
                         </a>
                         <!-- Dropdown - User Information -->

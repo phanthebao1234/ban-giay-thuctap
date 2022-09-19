@@ -51,4 +51,16 @@
             return $result;
         }
 
+        public function insertOrder($bill_id, $customer_id) {
+            $db = new connect();
+            $query = "insert into orders (order_fullname, order_address, order_phonenumber, order_total, order_tensanpham, order_quantity)
+            select CONCAT(a.customer_firstname, ' ', a.customer_lastname) as fullname,a.customer_address,a.customer_phonenumber, c.total, sp.TenSanPham, c.quantity
+            from sanpham sp, (customers a inner join bill b on a.customer_id=b.customer_id)
+            INNER JOIN bill_detail c on b.bill_id = c.bill_id
+            where b.customer_id = $customer_id
+            AND b.bill_id = $bill_id
+            AND sp.id_sanpham = c.id_sanpham";
+            $db -> exec($query);
+        }
+
 }

@@ -2,6 +2,13 @@
     <h1>Danh sách khách hàng</h1>
     <div class="d-flex justify-content-between flex-row mt-3">
         <div>
+            <?php 
+                if($_SESSION['roll'] == 'admin'){
+                    echo '<a class="btn btn-success" href="index.php?action=user&act=user_insert">Thêm Mới</a>';
+                } else {
+                    echo '<btn class="btn btn-secondary" onclick>Thêm Mới</btn>';
+                }
+            ?>
             <a class="btn btn-success" href="index.php?action=user&act=user_insert">Thêm Mới</a>
             <a class="btn btn-primary mx-3" href="index.php?action=user&act=user_export">Export Excel</a>
         </div>
@@ -96,7 +103,13 @@
 
             while ($set = $result->fetch()) :
             ?>
-                <tr>
+                <tr class="
+                    <?php if(isset($_SESSION['id'])) {
+                        if($_SESSION['id'] == $set['customer_id']) {
+                            echo 'table-success';
+                        }
+                    } ?>
+                ">
                     <td><?php echo $set['id_khachhang'] ?></td>
                     <td><?php echo $set['Ho'] ?></td>
                     <td><?php echo $set['Ten'] ?></td>

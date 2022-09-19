@@ -7,7 +7,7 @@ if (isset($_GET['act'])) {
         $title = 'Thêm người dùng mới';
     } else if ($act == 'edit') {
         $title = 'Cập nhật người dùng';
-        if(isset($_GET['id'])) {
+        if (isset($_GET['id'])) {
             $user_id = $_GET['id'];
             $user = new User();
             $result = $user->getUser($user_id);
@@ -20,7 +20,9 @@ if (isset($_GET['act'])) {
             $user_password = $result['user_password'];
             $user_address = $result['user_address'];
             $user_status = $result['user_status'];
-            $user_roll = $result['user_roll'];  
+            $user_roll = $result['user_roll'];
+
+
         }
     } else {
         echo 'Không tìm thấy id !';
@@ -44,7 +46,7 @@ if (isset($_GET['act'])) {
     }
     ?>
     <form>
-            <div class="row">
+        <div class="row">
             <input type="hidden" class="form-control" name="user_id" value="<?php if (isset($user_id)) echo $user_id ?>">
             <div class="col-md-3">
                 <label for="phone" class="form-label">First Name</label>
@@ -76,7 +78,7 @@ if (isset($_GET['act'])) {
                 <label for="phone" class="form-label">Ngày sinh</label>
                 <input type="date" class="form-control" name="birthday" value="<?php if (isset($user_id)) echo $user_birthday ?>">
             </div>
-            
+
             <div class="col-md-6">
                 <label for="phone" class="form-label">Email</label>
                 <input type="email" class="form-control" name="email" value="<?php if (isset($user_id)) echo $user_email ?>">
@@ -85,10 +87,37 @@ if (isset($_GET['act'])) {
                 <label for="phone" class="form-label">Password</label>
                 <input type="text" class="form-control" name="password" value="<?php if (isset($user_id)) echo $user_password ?>">
             </div>
-            <div class="col-md-12">
-                <label for="phone" class="form-label">Address</label>
-                <input type="text" class="form-control" id="đia chỉ " name="address" value="<?php if (isset($user_id)) echo $user_address ?>">
+
+
+            <div class="col-md-6">
+                <label for="country" class="form-label"><strong>Tỉnh : </strong><span class="text-danger">*</span></label>
+                <select class="form-select" id="country-dropdown" name="tinh">
+                    <option value="">Chọn Tỉnh</option>
+                    <?php
+                    $provinces = new Address();
+                    $result = $provinces->getListProvince();
+                    while ($set = $result->fetch()) :
+
+                    ?>
+                        <option value="<?php echo $set['code']; ?>"><?php echo $set["name"]; ?></option>
+                    <?php
+                    endwhile;
+                    ?>
+                </select>
             </div>
+            <div class="col-md-6">
+                <label for="state" class="form-label"><strong>Thành phố : </strong><span class="text-danger">*</span></label>
+                <select class="form-select" id="state-dropdown" name="thanhpho"></select>
+            </div>
+            <div class="col-md-6">
+                <label for="city" class="form-label"><strong>Quận, Huyện, Xã : </strong><span class="text-danger">*</span></label>
+                <select class="form-select" id="city-dropdown" name="xa"></select>
+            </div>
+            <div class="col-md-6">
+                <label for="" class="form-label"><strong>Địa chỉ nhà: </strong><span class="text-danger">*</span></label>
+                <input type="text" class="form-control" name="diachi" id="diachi">
+            </div>
+
             <div class="col-md-6">
                 <label for="" class="form-label">Image</label>
                 <img src="../../Content/images/<?php if (isset($user_id)) echo $user_image ?>" alt="">
@@ -109,3 +138,39 @@ if (isset($_GET['act'])) {
         </div>
     </form>
 </div>
+
+
+<script>
+        $(document).ready(function() {
+            $('#country-dropdown').on('change', function() {
+                var province_id = this.value;
+                $.ajax({
+                    url: "View/districts.php",
+                    type: "POST",
+                    data: {
+                        province_id: province_id
+                    },
+                    cache: false,
+                    success: function(result){
+                        $("#state-dropdown").html(result);
+                        $('#city-dropdown').html('<option value="">Select State First</option>'); 
+                    }
+                });
+            });
+
+            $('#state-dropdown').on('change', function() {
+                var state_id = this.value;
+                $.ajax({
+                    url: "View/wards.php",
+                    type: "POST",
+                    data: {
+                        state_id: state_id
+                    },
+                    cache: false,
+                    success: function(result){
+                        $("#city-dropdown").html(result);
+                    }
+                });
+            });
+        });
+    </script>

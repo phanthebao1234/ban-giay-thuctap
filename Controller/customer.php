@@ -1,6 +1,6 @@
 <?php 
     $action = 'customer';
-    if(isset($_GET['action'])) {
+    if(isset($_GET['act'])) {
         $action = $_GET['act'];
     }
 
@@ -23,7 +23,7 @@
             break;
         
         default:
-            # code...
+            include 'View/profile.php';
             break;
     }
 ?>

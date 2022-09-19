@@ -57,5 +57,12 @@
                 }
             }
         }
+
+        public function checkDuplicate($customer_email, $customer_phonenumber) {
+            $db = new connect();
+            $query = "select * from customers where customer_email = '$customer_email' and customer_phonenumber = '$customer_phonenumber'";
+            $result = $db -> getList($query);
+            return $result;
+        }
     }
 ?>

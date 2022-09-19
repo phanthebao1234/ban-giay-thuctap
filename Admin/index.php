@@ -53,5 +53,8 @@
     <!-- Page level custom scripts -->
     <!-- <script src="Content/js/chart-area-demo.js"></script>
     <script src="Content/js/chart-pie-demo.js"></script> -->
+    <!-- <script src="https://cdn.ckeditor.com/ckeditor5/35.1.0/classic/ckeditor.js"></script> -->
+    <!-- <script src="https://cdn.ckeditor.com/ckeditor5/12.3.1/classic/ckeditor.js"></script> -->
+
 </body>
 </html>

@@ -1,26 +1,17 @@
 <?php
-    class Order {
+    class Demo {
         public function __construct() {}
 
-        public function getListOrders2() {
+        public function getListOrders() {
             $db = new connect();
             $query = "select b.bill_id, CONCAT(a.customer_firstname, ' ', a.customer_lastname) as fullname,a.customer_address,a.customer_phonenumber,b.ngaydat, c.total, sp.TenSanPham, c.quantity
             from sanpham sp, (customers a inner join bill b on a.customer_id=b.customer_id)
             INNER JOIN bill_detail c on b.bill_id = c.bill_id
             where sp.id_sanpham = c.id_sanpham 
-            order by b.ngaydat desc
             "; 
             $result = $db -> getList($query);
             return $result;
         }
-
-        public function getListOrders() {
-            $db = new connect();
-            $query = "select * from orders order by order_ngaydat asc, order_status desc";
-            $result = $db -> getList($query);
-            return $result;
-        }
-
         public function insertOrders() {
             $db = new connect();
             $query = "select b.bill_id, CONCAT(a.customer_firstname, ' ', a.customer_lastname) as fullname,a.customer_address,a.customer_phonenumber,b.ngaydat, c.total, sp.TenSanPham, c.quantity
@@ -47,19 +38,5 @@
             $result = $db -> getInstance($query);
             return $result;
         }
-
-        public function updateStatusOrder($order_id, $order_status) {
-            $db = new connect();
-            $query = "update orders set order_status = '$order_status' where order_id = '$order_id'";
-            $db -> exec($query);
-        }
-
-        public function getListOrdersLimit3() {
-            $db = new connect();
-            $query = "select * from orders order by order_ngaydat asc limit 3";
-            $result = $db -> getList($query);
-            return $result;
-        }
-
     }
 ?>
