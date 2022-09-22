@@ -42,7 +42,7 @@
             $db-> exec($query);
         }
 
-        public function regristerCustomer($customer_firstname, $customer_lastname, $customer_render, $customer_birthday, $customer_phonenumber, $customer_email, $customer_password, $customer_address, $customer_image) {
+        public function regristerCustomer($customer_firstname, $customer_lastname, $customer_render = 1, $customer_birthday = '1990-01-01', $customer_phonenumber, $customer_email, $customer_password, $customer_address, $customer_image='' ) {
             $db = new connect();
             $query = "insert into customers (customer_firstname, customer_lastname, customer_render, customer_birthday, customer_phonenumber, customer_email, customer_password, customer_address, customer_image)
             values ('$customer_firstname', '$customer_lastname', '$customer_render', '$customer_birthday', '$customer_phonenumber', '$customer_email', '$customer_password', '$customer_address', '$customer_image')";
@@ -60,8 +60,8 @@
 
         public function checkDuplicate($customer_email, $customer_phonenumber) {
             $db = new connect();
-            $query = "select * from customers where customer_email = '$customer_email' and customer_phonenumber = '$customer_phonenumber'";
-            $result = $db -> getList($query);
+            $query = "select COUNT(*) as count from customers where customer_email = '$customer_email' or customer_phonenumber = '$customer_phonenumber'";
+            $result = $db -> getInstance($query);
             return $result;
         }
     }

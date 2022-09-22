@@ -23,7 +23,7 @@
             <?php echo '<a style="text-decoration: none; color: #fff" href="index.php?action=auth&act=viewprofile">' . $_SESSION['customer_firstname'] . ' ' . $_SESSION['customer_lastname'] . '</a>'; ?>
           </button>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item text-danger text-capitalize" href="index.php?action=">Xem hồ sơ</a></li>
+            <li><a class="dropdown-item text-danger text-capitalize" href="index.php?action=customer&act=profile">Xem hồ sơ</a></li>
             <li><a class="dropdown-item text-danger text-capitalize" href="index.php?action=cart&act=status">Xem đơn đặt hàng</a></li>
             <!-- <li><a class="dropdown-item" href="#">Something else here</a></li> -->
             <li><hr class="dropdown-divider"></li>

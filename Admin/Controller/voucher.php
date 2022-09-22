@@ -18,14 +18,21 @@
                 $voucher_count = $_POST['voucher_count'];
                 $voucher_status = $_POST['voucher_status'];
                 $voucher = new Voucher();
-                $voucher -> insertVoucher($voucher_code, $voucher_name, $voucher_start, $voucher_end, $voucher_sale, $voucher_count, $voucher_status);
-                if(isset($voucher) == true) {
-                    echo "<script>alert('Thêm thành công')</script>";
-                    echo '<meta http-equiv="refresh" content="0;url=./index.php?action=voucher"/>';
-                } else {
-                    echo "<script>alert('Thêm thất bại')</script>";
+                $count_voucher_code = $voucher -> checkDuplicateVoucherCode($voucher_code);
+                if ($count_voucher_code['count'] > 0) {
+                    echo '<script>alert("Mã voucher đã tồn tại")</script>';
                     echo '<meta http-equiv="refresh" content="0;url=./index.php?action=voucher&act=insert"/>';
+                } else {
+                    $voucher -> insertVoucher($voucher_code, $voucher_name, $voucher_start, $voucher_end, $voucher_sale, $voucher_count, $voucher_status);
+                    if(isset($voucher) == true) {
+                        echo "<script>alert('Thêm thành công')</script>";
+                        echo '<meta http-equiv="refresh" content="0;url=./index.php?action=voucher"/>';
+                    } else {
+                        echo "<script>alert('Thêm thất bại')</script>";
+                        echo '<meta http-equiv="refresh" content="0;url=./index.php?action=voucher&act=insert"/>';
+                    }
                 }
+                
             }
             break;
         case 'update':
@@ -41,8 +48,9 @@
                 $voucher_sale = $_POST['voucher_sale'];
                 $voucher_count = $_POST['voucher_count'];
                 $voucher_status = $_POST['voucher_status'];
+                $voucher_type = $_POST['voucher_type'];
                 $voucher = new Voucher();
-                $voucher -> updateVoucher($voucher_id, $voucher_code, $voucher_name, $voucher_start, $voucher_end, $voucher_sale, $voucher_count, $voucher_status);
+                $voucher -> updateVoucher($voucher_id, $voucher_code, $voucher_name, $voucher_start, $voucher_end, $voucher_sale,$voucher_type, $voucher_count, $voucher_status);
                 if(isset($voucher)) {
                     echo "<script>alert('Cập nhật thành công')</script>";
                     echo '<meta http-equiv="refresh" content="0;url=./index.php?action=voucher"/>';

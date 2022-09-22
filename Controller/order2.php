@@ -104,6 +104,9 @@
             echo '<script>alert("Thanh toán thành công")</script>';
             echo '<meta http-equiv="refresh" content="0;url=./index.php?action=order"/>';
             break;
+        case 'list_order':
+            include 'View/listOrder.php';
+            break;
         default:
             break;
     }

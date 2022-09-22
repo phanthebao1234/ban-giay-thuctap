@@ -45,6 +45,9 @@
         </li>
 
         <!-- Nav Item - Utilities Collapse Menu -->
+        <?php 
+            if($_SESSION['roll'] == 'admin'):
+        ?>
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#user" aria-expanded="true" aria-controls="collapseUtilities">
                 <i class="fas fa-fw fa-user"></i>
@@ -56,7 +59,8 @@
                 </div>
             </div>
         </li>
-
+        <?php endif;?>
+    
         <!-- Nav Item - Utilities Collapse Menu -->
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
@@ -283,9 +287,17 @@
                     <li class="nav-item dropdown no-arrow">
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="mr-2 d-none d-lg-inline text-gray-600 small">
-                                <?php if(isset($_SESSION['firstname']) && $_SESSION['lastname']) echo $_SESSION['firstname'].' '.$_SESSION['lastname']; ?>
+                                <?php 
+                                    $user = new User();
+                                    $result = $user -> getUser($_SESSION['id']);    
+                                    if(isset($_SESSION['id'])) echo $result['user_firstname'].' '.$result['user_lastname']; ?>
                             </span>
-                            <img class="img-profile rounded-circle" src="Content/images/undraw_profile.svg">
+                            <img class="img-profile rounded-circle" src="Content/images/<?php if(isset($_SESSION['id'])) {
+                                echo $result['user_image'];
+                            } 
+                            if ($result['user_image'] == "") {
+                                echo 'noimageuser.png';
+                            }?>">
                         </a>
                         <!-- Dropdown - User Information -->
                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">

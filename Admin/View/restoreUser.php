@@ -1,6 +1,6 @@
 <div class="container-fluid">
     <a class="text-decoration-underline fst-italic" href="index.php?action=users"><i class="fas fa-angle-left"></i> Quay lại danh sách danh mục</a>
-    <h1 class="text-capitalize">Các danh mục đã xóa</h1>
+    <h1 class="text-capitalize">Người dùng đã xóa</h1>
     <table class="table table-striped table-bordered table-hover my-3">
         <thead>
             <tr>
@@ -23,7 +23,7 @@
             <?php
                 $i= 0;
                 $users = new User();
-                $results = $users->getListUsers();
+                $results = $users->getListUsersNoActive();
                 while($set = $results->fetch()):
                     $i++;
             ?>
@@ -49,7 +49,7 @@
                 <td><?php echo $set['user_address']; ?></td>
                 <td>
                     <?php 
-                        if($set['user_status'] == 0) {
+                        if($set['user_status'] == 1) {
                             echo '<button class="btn btn-success">Active</button>';
                         } else {
                             echo '<button class="btn btn-danger">Active</button>';
@@ -59,7 +59,7 @@
                 </td>
                 <td><?php echo $set['user_roll']; ?></td>
                 <td>
-                    <a href="index.php?action=users&act=edit&id=<?php echo $set['user_id']; ?>" class="btn btn-warning">Sửa</a>
+                    <a href="index.php?action=users&act=restore_action&id=<?php echo $set['user_id']; ?>" class="btn btn-info">Khôi phục</a>
                 </td>
                 <td>
                     <?php 

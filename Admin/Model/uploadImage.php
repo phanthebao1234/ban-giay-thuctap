@@ -2,9 +2,8 @@
 function uploadImage()
 {
   // B1:có thư mục chứa hình:
-  $target_dir = "../Content/images/";
-  echo $_FILES['image']['name'];
-  echo $target_dir;
+  $target_dir = "../../Content/images/";
+
   // B2: lấy tên file lưu trên server để đưa vào thư mục uploadimage
   // uploadimage/juno.jpg
   $target_file = $target_dir.basename($_FILES["image"]["name"]);

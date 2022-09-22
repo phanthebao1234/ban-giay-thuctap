@@ -10,50 +10,8 @@ switch ($action) {
     case "insert_product":
         include 'View/editsanpham.php';
         break;
-    case "insert_action":
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $tensanpham = $_POST['tensanpham'];
-            $giasanpham = $_POST['giasanpham'];
-            $hinh = $_FILES['image']['name'];
-            // echo var_dump($hinh);
-            $images = implode(';', $hinh);
-            $mota = $_POST['mota'];
-            $size = $_POST['size'];
-            $thuonghieu = $_POST['thuonghieu'];
-            $tonkho = $_POST['tonkho'];
-        }
-        $sanpham = new Products();
-        $sanpham->insertProduct($tensanpham, $giasanpham, $images, $mota, $size, $thuonghieu, $tonkho);
-        if (isset($sanpham)) {
-            echo 'Hello';
-            uploadImage();
-            echo '<meta http-equiv="refresh" content="0;url=./index.php?action=product"/>';
-        }
-        include 'View/products.php';
-        break;
     case "update_product":
         include 'View/editsanpham.php';
-        break;
-    case 'update_action':
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $id_sanpham = $_POST['id_sanpham'];
-            $tensanpham = $_POST['tensanpham'];
-            $giasanpham = $_POST['giasanpham'];
-            $hinh = $_FILES['image']['name'];
-            $images = implode(';', $hinh);
-            $mota = $_POST['mota'];
-            $size = $_POST['size'];
-            $thuonghieu = $_POST['thuonghieu'];
-            $tonkho = $_POST['tonkho'];
-            $sanpham = new Products();
-            $sanpham->updateProduct($id_sanpham, $tensanpham, $giasanpham, $images, $mota, $size, $thuonghieu, $tonkho);
-            if (isset($sanpham)) {
-                uploadImage();
-            }
-            echo '<meta http-equiv="refresh" content="0;url=./index.php?action=product"/>';
-            echo 'Cập nhật thành công';
-        }
-        include 'View/products.php';
         break;
     case 'delete_action':
         if (isset($_GET['id_sanpham'])) {

@@ -89,7 +89,7 @@
                     <div class="d-flex flex-row user-info">
                         <!-- Chỗ image có thể load hình của từng customer -->
                         <img class="rounded-circle" src="../Content/images/noimagesuser.png" width="40"> 
-                        <div class="d-flex flex-column justify-content-start ml-2">
+                        <div class="d-flex flex-column justify-content-start mx-2">
                             <span class="d-block font-weight-bold name"><?php echo $set['fullname'] ?></span>
                             <span class="date text-black-50"><?php echo $set['created_at'] ?></span>
                         </div>

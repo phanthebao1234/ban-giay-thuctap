@@ -11,7 +11,7 @@
         }
 
         // Thêm sản phẩm
-        function insertProduct($tensanpham, $giasanpham, $hinhsanpham, $mota, $size, $thuonghieu, $tonkho) {
+        function insertProduct($tensanpham, $giasanpham, $hinhsanpham="", $mota="", $size, $thuonghieu, $tonkho) {
             $db = new connect();
             $query = "insert into sanpham (id_sanpham, TenSanPham, GiaSanPham, HinhSanPham, MoTa, Size, ThuongHieu, TonKho) 
             values (Null, '$tensanpham', '$giasanpham', '$hinhsanpham', '$mota', '$size', '$thuonghieu', '$tonkho')";
@@ -19,7 +19,7 @@
         }
 
         // Cập Nhật sản phẩm
-        function updateProduct($id_sanpham, $tensanpham, $giasanpham, $hinhsanpham, $mota, $size, $thuonghieu, $tonkho) {
+        function updateProduct($id_sanpham, $tensanpham, $giasanpham, $hinhsanpham="", $mota="", $size, $thuonghieu, $tonkho) {
             $db = new connect();
             $query = "update sanpham 
             set TenSanPham='$tensanpham',

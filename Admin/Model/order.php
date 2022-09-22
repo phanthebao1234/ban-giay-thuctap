@@ -16,7 +16,7 @@
 
         public function getListOrders() {
             $db = new connect();
-            $query = "select * from orders order by order_ngaydat asc, order_status desc";
+            $query = "select * from orders order by order_ngaydat desc";
             $result = $db -> getList($query);
             return $result;
         }
@@ -57,6 +57,13 @@
         public function getListOrdersLimit3() {
             $db = new connect();
             $query = "select * from orders order by order_ngaydat asc limit 3";
+            $result = $db -> getList($query);
+            return $result;
+        }
+
+        public function filterOrder($order_status) {
+            $db = new connect();
+            $query = "select * from orders where order_status='$order_status' ORDER BY order_ngaydat ASC";
             $result = $db -> getList($query);
             return $result;
         }

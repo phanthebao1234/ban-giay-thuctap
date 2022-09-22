@@ -24,7 +24,7 @@
         }
         public function getDetailAddress($wards_code) {
             $db = new connect();
-            $query = "select CONCAT('Tỉnh ',p.name, ', thành phố ', d.name, ' , quận/xã: ', w.name) as address
+            $query = "select CONCAT('Tỉnh/Thành phố: ',p.name, ', Quận/Huyện: ', d.name, ' , Phường/Xã: ', w.name) as address
             from provinces p, (districts d inner join wards w on d.code=w.district_code)
             where w.code = $wards_code
             AND p.code = d.province_code";

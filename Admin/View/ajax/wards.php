@@ -1,10 +1,9 @@
 <?php 
-    include '../Model/connect.php';
-    include '../Model/address.php';
+    include '../../Model/connect.php';
+    include '../../Model/address.php';
     $address = new Address();
-    // $province_id = $_SESSION['province_id'];
-    $province_id = $_POST['province_id'];
-    $result = $address -> getDistrict($province_id);
+    $state_id = $_POST['state_id'];
+    $result = $address -> getWards($state_id);
 ?>
     <option value="">Select Disctrict</option>
 <?php

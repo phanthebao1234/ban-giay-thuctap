@@ -47,12 +47,22 @@
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 if (isset($_POST['txtsearch'])) {
                     $str = trim($_POST['txtsearch']);
-                    $results = $sp->searchNameProduct($str);
-                    echo 'Tìm kiếm cho sản phẩm '. $str. '...';
+                    if($str == "") {
+                        echo '<span class="text-danger">Vui lòng nhập tên sản phẩm</span>';
+                    } else {
+                        $results = $sp->searchNameProduct($str);
+                        echo '<a href="index.php?action=product" class="fst-italic">Quay lại danh sách</a>';
+                        echo 'Tìm kiếm cho sản phẩm '. $str. '...';
+                    }
                 } else if(isset($_POST['idsearch'])) {
                     $id = trim($_POST['idsearch']);
-                    $results = $sp->searchIDProduct($id);
-                    echo 'Tìm kiếm cho sản phẩm '. $id. '...';
+                    if($id == '') {
+                        echo '<span class="text-danger">Vui lòng nhập tên sản phẩm</span>';
+                    } else {
+                        $results = $sp->searchIDProduct($id);
+                        echo '<a href="index.php?action=product" class="fst-italic">Quay lại danh sách</a>';
+                        echo 'Tìm kiếm cho sản phẩm '. $id. '...';
+                    }
                 }
             }
         }

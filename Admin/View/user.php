@@ -4,7 +4,7 @@
         <div>
             <?php 
                 if($_SESSION['roll'] == 'admin'){
-                    echo '<a class="btn btn-success" href="index.php?action=users&act=insert">Thêm Mới</a>
+                    echo '<a class="btn btn-primary me-3" href="index.php?action=users&act=insert">Thêm Mới</a>
                         <a href="index.php?action=user&act=import" class="btn btn-info me-3">&uArr; Nhập CSV</a>
                         <a href="index.php?action=user&act=export" class="btn btn-success">&dArr; Xuất file Excel</a>';
                 } else {
@@ -29,10 +29,8 @@
                 <th>Birth Date</th>
                 <th>Phone</th>
                 <th>Email</th>
-                <th>Password</th>
                 <th>Address</th>
-                <th>Status</th>
-                <th>Roll</th>
+                <th>Image</th>
                 <th>Sửa</th>
                 <th>Xóa</th>
             </tr>
@@ -40,7 +38,7 @@
         <tbody>
             <?php
                 $users = new User();
-                $results = $users->getListUsers();
+                $results = $users->getListUsersActive($_SESSION['id']);
                 while($set = $results->fetch()):
             ?>
             <tr class="
@@ -67,7 +65,6 @@
                 <td><?php echo $set['user_birthday']; ?></td>
                 <td><?php echo $set['user_phonenumber']; ?></td>
                 <td><?php echo $set['user_email']; ?></td>
-                <td><?php echo $set['user_password']; ?></td>
                 <td>
                     <?php 
                         $address = new Address();
@@ -75,20 +72,19 @@
                         echo $result['address'];
                     ?>
                 </td>
-                <td>
-                    <?php 
-                        if($set['user_status'] == 1) {
-                            echo '<button class="btn btn-success">Active</button>';
-                        } else {
-                            echo '<button class="btn btn-danger">Active</button>';
-                        }
+                <td style="background-image: url('../../Content/images/<?php echo $set['user_image'] ?>'); background-size: cover; background-repeat: no-repeat; background-position: center">
 
-                    ?>
                 </td>
                 
-                <td><?php echo $set['user_roll']; ?></td>
                 <td>
-                    <a href="index.php?action=users&act=edit&id=<?php echo $set['user_id']; ?>" class="btn btn-warning">Sửa</a>
+                    <?php 
+                        if($_SESSION['id'] == $set['user_id'] || $_SESSION['roll'] == 'admin') {
+                            echo '<a href="index.php?action=users&act=edit&id='.$set['user_id'].'" class="btn btn-warning">Sửa</a>';
+                        } else {
+                            echo '<a href="#" onclick="myAlertDele()" class="btn btn-warning">Sửa</a>';
+                        }
+                    ?>
+                    
                 </td>
                 <td>
                     <?php 
@@ -100,7 +96,7 @@
                                 echo '<a href="#" onclick="myAlertDele()" class="btn btn-secondary">Xóa</a>';
                             }
                             else {
-                                echo '<a href="index.php?action=users&act=delete_confirm&id='.$set['user_id'].'" class="btn btn-danger">Xóa</a>';
+                                echo '<a onclick="return confirm("Bạn có chắc chắn xóa !")" href="index.php?action=users&act=delete_confirm&id='.$set['user_id'].'" class="btn btn-danger">Xóa</a>';
                             }
                         }
                     ?>

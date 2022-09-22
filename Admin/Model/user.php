@@ -10,16 +10,32 @@
             return $result;
         }
 
-        // Thêm dữ liệu
-        public function insertUsers($user_firstname, $user_lastname, $user_render, $user_birthday, $user_phonenumber, $user_email, $user_password, $user_address, $user_status, $user_roll, $user_number_home) {
+        // Lấy tất cả user với status là active
+        public function getListUsersActive($user_id) {
             $db = new connect();
-            $query = "insert into users (user_id, user_firstname, user_lastname, user_render, user_birthday, user_phonenumber, user_email, user_password, user_address, user_status, user_roll, user_number_home)
-            values (Null, '$user_firstname', '$user_lastname', '$user_render', '$user_birthday', '$user_phonenumber', '$user_email', '$user_password', '$user_address', '$user_status', '$user_roll', '$user_number_home')";
+            $query = "select * from users where user_status = 1 and user_id != '$user_id' and user_roll = 'user'";
+            $result = $db->getList($query);
+            return $result;
+        }
+
+        // Lấy tất cả user với status là no active
+        public function getListUsersnoActive() {
+            $db = new connect();
+            $query = "select * from users where user_status = 0 and user_roll = 'user'";
+            $result = $db->getList($query);
+            return $result;
+        }
+
+        // Thêm dữ liệu
+        public function insertUsers($user_firstname, $user_lastname, $user_render, $user_birthday, $user_phonenumber, $user_email, $user_password, $user_address, $user_image, $user_status, $user_roll, $user_number_home) {
+            $db = new connect();
+            $query = "insert into users (user_id, user_firstname, user_lastname, user_render, user_birthday, user_phonenumber, user_email, user_password, user_address, user_image, user_status, user_roll, user_number_home)
+            values (Null, '$user_firstname', '$user_lastname', '$user_render', '$user_birthday', '$user_phonenumber', '$user_email', '$user_password', '$user_address', '$user_image', '$user_status', '$user_roll', '$user_number_home')";
             $db -> exec($query);
         }
 
         // Cập nhật dữ liệu
-        public function updateUser($user_id, $user_firstname, $user_lastname, $user_render, $user_birthday, $user_phonenumber, $user_email, $user_password, $user_address, $user_status, $user_roll, $user_number_home) {
+        public function updateUser($user_id, $user_firstname, $user_lastname, $user_render, $user_birthday, $user_phonenumber, $user_email, $user_password, $user_address, $user_image, $user_status=1, $user_roll, $user_number_home) {
             $db = new connect();
             $query = "update users set
             user_id='$user_id',
@@ -31,6 +47,7 @@
             user_email='$user_email',
             user_password='$user_password',
             user_address='$user_address',
+            user_image='$user_image',
             user_status='$user_status',
             user_roll='$user_roll',
             user_number_home='$user_number_home'
@@ -74,6 +91,14 @@
             $db = new connect();
             $query = "update users 
             set user_status = 0
+            where user_id = '$user_id'";
+            $db -> exec($query);
+        }
+
+        public function restoreUser($user_id) {
+            $db = new connect();
+            $query = "update users 
+            set user_status = 1
             where user_id = '$user_id'";
             $db -> exec($query);
         }

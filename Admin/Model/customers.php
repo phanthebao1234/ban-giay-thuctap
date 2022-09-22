@@ -19,28 +19,48 @@
         }
 
         // Thêm dữ liệu vào customer
-        public function insertCustomers($firstname, $lastname, $render, $birthday, $phone, $email, $password, $address, $image) {
+        public function insertCustomers($customer_firstname, $customer_lastname, $customer_render, $customer_birthday, $customer_phone, $customer_email, $customer_password, $customer_address, $customer_code_address, $customer_image) {
             $db = new connect();
-            $query = "insert into customers (customer_id, customer_firstname, customer_lastname, customer_render,customer_birthday, customer_phonenumber, customer_email, customer_password, customer_address, customer_image) 
-            values(Null, '$firstname', '$lastname', '$render', '$birthday', $phone, '$email', '$password', '$address', '$image')";
+            if($customer_image == "") {
+                $query = "insert into customers (customer_id, customer_firstname, customer_lastname, customer_render,customer_birthday, customer_phonenumber, customer_email, customer_password, customer_address, customer_code_address) 
+                values(Null, '$customer_firstname', '$customer_lastname', '$customer_render', '$customer_birthday', $customer_phone, '$customer_email', '$customer_password', '$customer_address', $customer_code_address)";
+            } else {
+                $query = "insert into customers (customer_id, customer_firstname, customer_lastname, customer_render,customer_birthday, customer_phonenumber, customer_email, customer_password, customer_address, customer_image, customer_code_address) 
+                values(Null, '$customer_firstname', '$customer_lastname', '$customer_render', '$customer_birthday', $customer_phone, '$customer_email', '$customer_password', '$customer_address', '$customer_image', $customer_code_address)";
+            }
             $db -> exec($query);
         }
 
         // Cập nhật dữ liệu
-        public function updateCustomer($customer_id, $customer_firstname, $customer_lastname, $customer_render, $customer_birthday, $customer_phonenumber, $customer_email, $customer_password, $customer_address, $customer_image) {
+        public function updateCustomer($customer_id, $customer_firstname, $customer_lastname, $customer_render=1, $customer_birthday="", $customer_phonenumber, $customer_email, $customer_password, $customer_address="", $customer_code_address, $customer_image) {
             $db = new connect();
-            $query = "update customers set 
-            customer_id=$customer_id,
-            customer_firstname='$customer_firstname',
-            customer_lastname='$customer_lastname',
-            customer_render='$customer_render',
-            customer_birthday='$customer_birthday',
-            customer_phonenumber='$customer_phonenumber',
-            customer_email='$customer_email',
-            customer_password='$customer_password',
-            customer_address='$customer_address',
-            customer_image='$customer_image'
-            where customer_id='$customer_id'";
+            if ($customer_image == "") {
+                $query = "update customers set 
+                customer_firstname='$customer_firstname',
+                customer_lastname='$customer_lastname',
+                customer_render='$customer_render',
+                customer_birthday='$customer_birthday',
+                customer_phonenumber='$customer_phonenumber',
+                customer_email='$customer_email',
+                customer_password='$customer_password',
+                customer_address='$customer_address',
+                customer_code_address = '$customer_code_address'
+                where customer_id=$customer_id";
+            }
+            else {
+                $query = "update customers set 
+                customer_firstname='$customer_firstname',
+                customer_lastname='$customer_lastname',
+                customer_render='$customer_render',
+                customer_birthday='$customer_birthday',
+                customer_phonenumber='$customer_phonenumber',
+                customer_email='$customer_email',
+                customer_password='$customer_password',
+                customer_address='$customer_address',
+                customer_code_address='$customer_code_address',
+                customer_image='$customer_image'
+                where customer_id=$customer_id";
+            }
             $db->exec($query);
         }
 
@@ -56,6 +76,14 @@
             $db = new connect();
             $query = "DELETE FROM customers";
             $db->exec($query);
+        }
+
+        // Kiểm tra trùng email hoặc số điện thoại
+        public function checkDuplicate($customer_email, $customer_phonenumber) {
+            $db = new connect();
+            $query = "select COUNT(*) as count from customers where customer_email = '$customer_email' or customer_phonenumber = '$customer_phonenumber'";
+            $result = $db -> getInstance($query);
+            return $result;
         }
     }
 ?>

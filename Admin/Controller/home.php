@@ -5,6 +5,9 @@
     }
 
     switch($action) {
+        case 'upload':
+            include 'View/importImage.php'; 
+            break;
         case 'home':
             include 'View/home.php';
             break;

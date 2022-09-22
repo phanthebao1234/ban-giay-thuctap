@@ -8,7 +8,7 @@
                 $customer_lastname = $result['customer_lastname'];
                 $customer_firstname = $result['customer_firstname'];
                 $customer_email = $result['customer_email'];
-                $customer_phone = $result['customer_phone'];
+                $customer_phone = $result['customer_phonenumber'];
                 $customer_render = $result['customer_render'];  
                 $customer_birthday = $result['customer_birthday'];
                 
@@ -17,17 +17,15 @@
                 <div class="col-4">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Active</a>
+                            <a class="nav-link" href="index.php?action=customer&act=profile">Tài khoản của tôi</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Link</a>
+                            <a class="nav-link" href="index.php?action=order2&act=list_order">Đơn mua</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Link</a>
+                            <a class="nav-link" href="index.php?action=">Sản phẩm yêu thích</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                        </li>
+                        
                     </ul>
                 </div>
                 <div class="col-8 bg-white">
@@ -42,41 +40,48 @@
                                         <tbody>
                                             <tr>
                                                 <td>Tên của bạn:</td>
-                                                <td>Phan Thế Bảo</td>
+                                                <td><?php echo $customer_firstname.' '.$customer_lastname ?></td>
                                             </tr>
                                             <tr>
                                                 <td>Tài khoản Email:</td>
-                                                <td>bao123@gmail.comments</td>
+                                                <td><?php echo $customer_email ?></td>
                                             </tr>
                                             <tr>
                                                 <td>Số điện thoại:</td>
-                                                <td>034123123</td>
+                                                <td><?php echo $customer_phone ?></td>
                                             </tr>
                                             <tr>
                                                 <td>Giới tính:</td>
                                                 <td>
                                                     <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                                                        <label class="form-check-label" for="inlineRadio1">Nam</label>
+                                                        <input class="form-check-input" type="radio" name="render" id="render" value="1" checked>
+                                                        <label class="form-check-label" for="render">Nam</label>
                                                     </div>
                                                     <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                                                        <label class="form-check-label" for="inlineRadio2">Nữ</label>
+                                                        <input class="form-check-input" type="radio" name="render" id="render" value="0">
+                                                        <label class="form-check-label" for="render">Nữ</label>
                                                     </div>
                                                     <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
-                                                        <label class="form-check-label" for="inlineRadio3">Khác</label>
+                                                        <input class="form-check-input" type="radio" name="render" id="render" value="option3">
+                                                        <label class="form-check-label" for="render">Khác</label>
                                                     </div>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>Ngày sinh:</td>
                                                 <td>
-                                                    
+                                                    <input type="date" name="customer_birthday" value="<?php echo $result['customer_birthday']; ?>" id="">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td>
+                                                    <button type="submit" class="btn btn-danger p-2">Lưu</button>
                                                 </td>
                                             </tr>
                                         </tbody>
                                     </table>
+
                                 </form>
                             </div>
                         </div>

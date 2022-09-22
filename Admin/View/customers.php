@@ -11,7 +11,7 @@
     <table class="table table-bordered table-hover my-3">
         <thead>
             <tr>
-                <th>ID</th>
+                <th>STT</th>
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Render</th>
@@ -27,13 +27,15 @@
         </thead>
         <tbody>
             <?php
+                $i = 0;
                 $customers = new Customers();
                 $results = $customers->getListCustomers();
                 while($set= $results->fetch()):
+                    $i++
             ?>
             <tr>
                 <td>
-                    <?php echo $set['customer_id'] ?>
+                    <?php echo $i ?>
                 </td>
                 <td>
                     <?php echo $set['customer_firstname'] ?>

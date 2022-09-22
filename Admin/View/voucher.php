@@ -36,12 +36,20 @@
                     <td><?php echo $set['voucher_name']?></td>
                     <td><?php echo $set['voucher_start'] ?></td>
                     <td><?php echo $set['voucher_end'] ?></td>
-                    <td><?php echo $set['voucher_sale']*100; ?></td>
+                    <td>
+                        <?php 
+                            if($set['voucher_type'] == 'phantram') {
+                                echo $set['voucher_sale'].' %'; 
+                            } else {
+                                echo $set['voucher_sale'].' vnđ';
+                            }
+                        ?>
+                    </td>
                     <td><?php echo $set['voucher_count']?></td>
                     <td>
                         <a class="btn btn-warning" href="index.php?action=voucher&act=update&id=<?php echo $set['voucher_id']?>">Sửa</a>
                     </td>
-                    <td>
+                    <td>    
                         <a class="btn btn-danger"  href="index.php?action=voucher&act=delete&id=<?php echo $set['voucher_id']?>">Xóa</a>
                     </td>
                 </tr>

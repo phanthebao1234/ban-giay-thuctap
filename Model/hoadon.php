@@ -41,7 +41,7 @@
 
         public function getStatusHoaDon($customer_id) {
             $db = new connect();
-            $query = "select b.bill_id, CONCAT(a.customer_firstname, ' ', a.customer_lastname) as fullname,a.customer_address,a.customer_phonenumber,b.ngaydat, c.total, sp.TenSanPham, c.quantity
+            $query = "select b.bill_id, CONCAT(a.customer_firstname, ' ', a.customer_lastname) as fullname,a.customer_address,a.customer_phonenumber,b.ngaydat, c.total, sp.TenSanPham, c.quantity, sp.HinhSanPham
             from sanpham sp, (customers a inner join bill b on a.customer_id=b.customer_id)
             INNER JOIN bill_detail c on b.bill_id = c.bill_id
             where b.customer_id = $customer_id
